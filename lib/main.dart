@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       builder: (context) => MyCart(),
       child: MaterialApp(
         themeMode: ThemeMode.dark,
-        title: 'Flutter Food Ordering',
+        title: 'Flutter Food Ordering   ',
         showSemanticsDebugger: false,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

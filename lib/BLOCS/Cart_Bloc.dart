@@ -17,7 +17,7 @@ class CartBloc {
     _cartFetcher.sink.add(cartModel);
   }
 
-  addproductToCart(String productId, String phone,String quantity) {
+  addproductToCart(String productId, String phone,String quantity)  {
     _repository.addProductToCart(productId, phone,quantity);
   }
 
