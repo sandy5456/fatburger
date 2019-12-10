@@ -71,7 +71,6 @@ class _YoutubeMainState extends State<YoutubeMain> {
           fixedColor: Colors.brown,
           unselectedItemColor: Colors.black,
           onTap: _onTapped,
-         
           items: [
             BottomNavigationBarItem(
              // activeIcon: Image.network("https://cdn0.iconfinder.com/data/icons/shopping-4-7/68/169-512.png",height: 35),

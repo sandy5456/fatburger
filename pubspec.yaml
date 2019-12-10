@@ -31,6 +31,12 @@ dependencies:
   flutter_swiper: ^1.1.6
   shifting_tabbar: ^0.3.1
   rflutter_alert: ^1.0.3
+  font_awesome_flutter: ^8.2.0
+  http: ^0.12.0+2
+  rxdart: ^0.22.2
+  flutter_spinkit: "^4.1.0"
+  shared_preferences: ^0.5.4+8
+  
 
 dev_dependencies:
   flutter_test:

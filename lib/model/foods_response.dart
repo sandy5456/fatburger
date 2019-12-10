@@ -37,17 +37,6 @@ class Food {
     this.v,
   });
 
-  factory Food.fromJson(Map<String, dynamic> json) => Food(
-        images: List<String>.from(json["images"].map((x) => x)),
-        id: json["_id"],
-        name: json["name"],
-        description: json["description"],
-        price: json["price"].toDouble(),
-        rating: json["rating"],
-        shop: Shop.fromJson(json["shop"]),
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
       );
 }
 

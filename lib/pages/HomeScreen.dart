@@ -13,7 +13,6 @@ import 'package:fatburger/widgets/cart_bottom_sheet.dart';
 import 'package:fatburger/widgets/food_card.dart';
 import 'package:fatburger/widgets/static_food_menu/food1.dart';
 
-
 import 'package:fatburger/widgets/static_food_menu/hot_drinks.dart';
 import 'package:fatburger/widgets/static_food_menu/iceCreams1.dart';
 import 'package:flutter/material.dart';
@@ -58,24 +57,15 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  @override
   void initState() {
     onInitData();
     super.initState();
   }
 
-  @override
-  void dispose() {
-    streamController.close();
-    super.dispose();
-  }
   bool isSelected;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-     
- 
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
         child: Column(
@@ -83,8 +73,6 @@ class _MyHomePageState extends State<MyHomePage> {
             buildAppBar(),
             offerImageCarasol(context),
             buildFoodFilter(),
-            Divider(),
-           // buildFoodList(),
           ],
         ),
       ),
