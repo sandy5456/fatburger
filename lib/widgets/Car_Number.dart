@@ -1,116 +1,59 @@
-library pin_entry_text_field;
-
 import 'package:flutter/material.dart';
+import 'package:pin_input_text_field/pin_input_text_field.dart';
+import 'package:pinput/pin_put/pin_put.dart';
 
-class PinEntryTextField extends StatefulWidget {
-  final int fields;
-  final onSubmit;
-  final fieldWidth;
-  final fontSize;
-  final isTextObscure;
-  final inputStyle;
-  final inputDecoration;
+void main() => runApp(PinPutTest());
 
-  PinEntryTextField(
-      {this.fields: 4,
-        this.onSubmit,
-        this.fieldWidth: 40.0,
-        this.fontSize: 20.0,
-        this.isTextObscure: false,
-        this.inputStyle,
-        this.inputDecoration,
-      })
-      : assert(fields > 0);
-
-  @override
-  State createState() {
-    return PinEntryTextFieldState();
-  }
-}
-
-class PinEntryTextFieldState extends State<PinEntryTextField> {
-  List<String> _pin;
-  List<FocusNode> _focusNodes;
-  List<TextEditingController> _textControllers;
-
-  @override
-  void initState() {
-    super.initState();
-    _pin = List<String>(widget.fields);
-    _focusNodes = List<FocusNode>(widget.fields);
-    _textControllers = List<TextEditingController>(widget.fields);
-  }
-
-  @override
-  void dispose() {
-//    _focusNodes.forEach((FocusNode f) => f.dispose());
-    _textControllers.forEach((TextEditingController t) => t.dispose());
-    super.dispose();
-  }
-
-  void clearTextFields() {
-    _textControllers.forEach(
-            (TextEditingController tEditController) => tEditController.clear());
-    _pin.clear();
-  }
-
-  Widget buildTextField(int i, BuildContext context) {
-    _focusNodes[i] = FocusNode();
-    _textControllers[i] = TextEditingController();
-
-    _focusNodes[i].addListener(() {
-      if (_focusNodes[i].hasFocus) {
-        _textControllers[i].clear();
-      }
-    });
-
-    return Container(
-      width: widget.fieldWidth,
-      margin: EdgeInsets.only(right: 10.0),
-      child: TextField(
-        controller: _textControllers[i],
-        keyboardType: TextInputType.number,
-        textAlign: TextAlign.center,
-        maxLength: 1,
-        style: widget.inputStyle,
-        decoration: widget.inputDecoration,
-        focusNode: _focusNodes[i],
-        obscureText: widget.isTextObscure,
-        onChanged: (String str) {
-          _pin[i] = str;
-          if (i + 1 != widget.fields) {
-            FocusScope.of(context).requestFocus(_focusNodes[i + 1]);
-          } else {
-            FocusScope.of(context).requestFocus(_focusNodes[0]);
-            widget.onSubmit(_pin.join());
-            clearTextFields();
-          }
-        },
-        onSubmitted: (String str) {
-          widget.onSubmit(_pin.join());
-          clearTextFields();
-        },
-      ),
-    );
-  }
-
-  Widget generateTextFields(BuildContext context) {
-    List<Widget> textFields = List.generate(widget.fields, (int i) {
-      return buildTextField(i, context);
-    });
-
-    FocusScope.of(context).requestFocus(_focusNodes[0]);
-
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        verticalDirection: VerticalDirection.down,
-        children: textFields);
-  }
-
+class PinPutTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: generateTextFields(context),
+    return MaterialApp(
+        theme: ThemeData(
+          primaryColor: Colors.green,
+          hintColor: Colors.green,
+        ),
+        home: Scaffold(
+          body: Container(
+        decoration: BoxDecoration(
+          color: Colors.black), 
+            child: Builder(
+              builder: (context) => Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Dialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40.0)),
+                    child: Container(
+                        color: Colors.black,
+                        height: MediaQuery.of(context).size.height * 0.5,
+                        child: Center(
+                            child: PinInputTextField(
+                          pinLength: 6,
+                          // decoration: _pinDecoration,
+                          // controller: _pinEditingController,
+                          autoFocus: true,
+                          textInputAction: TextInputAction.go,
+                          onSubmit: (String pin) => _showSnackBar(pin, context),
+                        )))),
+              ),
+            ),
+          ),
+        ));
+  }
+
+  void _showSnackBar(String pin, BuildContext context) {
+    final snackBar = SnackBar(
+      duration: Duration(seconds: 5),
+      content: Container(
+          height: 80.0,
+          child: Center(
+            child: Text(
+              'Pin Submitted. Value: $pin',
+              style: TextStyle(fontSize: 25.0),
+            ),
+          )),
+      backgroundColor: Colors.greenAccent,
     );
+    Scaffold.of(context).showSnackBar(snackBar);
+    print(pin);
   }
 }

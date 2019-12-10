@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     //        routes: <String, WidgetBuilder>{
     //   '/HomeScreen': (BuildContext context) => new YoutubeMain()
     // },
-        home: PinEntryTextField()),
+        home: YoutubeMain()),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:fatburger/pages/HomeScreen.dart';
 import 'package:fatburger/pages/offer_screen.dart';
+import 'package:fatburger/widgets/Car_Number.dart';
 
 import 'package:fatburger/widgets/drawer_screen.dart';
 import 'package:fatburger/widgets/static_food_menu/fav_page.dart';
@@ -31,6 +32,7 @@ class _YoutubeMainState extends State<YoutubeMain> {
       // Center(child: Text("Subscriptions",style: TextStyle(color: Colors.black),)),
 
       FavScreen(),
+
       RightNavigationBar()
     ];
 
@@ -77,9 +79,10 @@ class _YoutubeMainState extends State<YoutubeMain> {
           onTap: _onTapped,
           items: [
             BottomNavigationBarItem(
-               activeIcon: Image.asset("images/HOME1.png",height: 35),
-              title: Text("Home",
-             // style: TextStyle(color: Color(0xff84020e)),
+              activeIcon: Image.asset("images/HOME1.png", height: 35),
+              title: Text(
+                "Home",
+                // style: TextStyle(color: Color(0xff84020e)),
               ),
               icon: Image.network(
                 "https://static.thenounproject.com/png/1306759-200.png",
@@ -88,7 +91,7 @@ class _YoutubeMainState extends State<YoutubeMain> {
             ),
 
             BottomNavigationBarItem(
-               activeIcon: Image.asset("images/OFFER1.png",height: 35),
+              activeIcon: Image.asset("images/OFFER1.png", height: 35),
               title: Text("offers"),
               icon: Image.network(
                 "https://cdn0.iconfinder.com/data/icons/shopping-4-7/68/169-512.png",
@@ -98,7 +101,7 @@ class _YoutubeMainState extends State<YoutubeMain> {
             //  BottomNavigationBarItem(
             //     title: Text(""), icon: Image.asset("images/logo.png",height: 50,width: 50,),),
             BottomNavigationBarItem(
-              activeIcon: Image.asset("images/FAV1.png",height: 35),
+              activeIcon: Image.asset("images/FAV1.png", height: 35),
               title: Text("favourite"),
               icon: Image.network(
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTM5IKxarGuwdtAV8cd31jc0-BhGb__jHSC_6TegoypKvi5DqA0&s",
@@ -106,8 +109,10 @@ class _YoutubeMainState extends State<YoutubeMain> {
               ),
             ),
             BottomNavigationBarItem(
-              activeIcon: Image.asset("images/SETTINGS1.png",height: 35),
-              title: Text("settings",),
+              activeIcon: Image.asset("images/SETTINGS1.png", height: 35),
+              title: Text(
+                "settings",
+              ),
               icon: Image.network(
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFEcnC4OXu-3RYWD5O6-3vZgV6_iYKye15UtrE0c51VakhzlGL&s",
                 height: 30,

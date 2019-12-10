@@ -5,7 +5,8 @@ import 'package:fatburger/PAGES/Dlivery_Option.dart';
 import 'package:fatburger/constants/values.dart';
 
 import 'package:fatburger/widgets/Cart_Item_Screen.dart';
-import 'package:fatburger/widgets/FlatBotton_widget.dart';
+import 'package:fatburger/widgets/Delivery_PopUps.dart';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -161,7 +162,10 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
       child: RaisedButton(
         child: Text('CheckOut', style: titleStyle),
         onPressed: () {
-          popUpBox(context);
+          setState(() {
+               deliveryOptionPopUpBox(context);
+          });
+       
         },
         padding: EdgeInsets.symmetric(horizontal: 64, vertical: 12),
         color: mainColor,
