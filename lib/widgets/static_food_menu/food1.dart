@@ -127,7 +127,7 @@ class _Food1State extends State<Food1> {
                                     ],
                                   ),
                                   SizedBox(
-                                    width: 60,
+                                    width: 20,
                                   ),
                                   Container(
                                     padding: EdgeInsets.only(top: 5),
@@ -143,12 +143,13 @@ class _Food1State extends State<Food1> {
                           ),
                           buttons: [
                             DialogButton(
+                              
                               color: Colors.black,
                               onPressed: () => Navigator.pop(context),
                                 //push(context,MaterialPageRoute(
                                // builder: (context)=>MyHomePage()
                               child: Text(
-                                "CONFORM",
+                                "CONFIRM",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20),
                               ),
@@ -220,7 +221,7 @@ class _Food1State extends State<Food1> {
                                                           fontSize: 18),
                                                     ),
                                                     SizedBox(
-                                                      width: 45,
+                                                      width: 35,
                                                     ),
                                                     Text(
                                                       category["price"],
@@ -260,6 +261,7 @@ class _Food1State extends State<Food1> {
                                                       color: Colors.green,
                                                       child: InkWell(
                                                         //onTap: addItemToCard,
+                                                   
                                                         splashColor: Colors.white70,
 
                                                         child: Icon(Icons.add,size: 16,color: Colors.white,)

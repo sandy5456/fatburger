@@ -122,8 +122,8 @@ class _IceCreams2State extends State<IceCreams2> {
                                                 ),
                                     ],
                                   ),
-                                  SizedBox(
-                                    width: 60,
+                                    SizedBox(
+                                    width: 20,
                                   ),
                                       Container(
                                         padding: EdgeInsets.only(top: 5),
@@ -145,7 +145,7 @@ class _IceCreams2State extends State<IceCreams2> {
                                   onPressed: () => Navigator.pop(context),
                                   child: Container(
                                     child: Text(
-                                      "CONFORM",
+                                      "CONFIRM",
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 20),
                                     ),
@@ -223,7 +223,7 @@ class _IceCreams2State extends State<IceCreams2> {
                                                           fontSize: 18),
                                                     ),
                                                     SizedBox(
-                                                      width: 45,
+                                                      width: 35,
                                                     ),
                                                     Text(
                                                       category["price"],

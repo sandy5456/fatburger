@@ -9,8 +9,9 @@ class ApiProvider {
     var dio = Dio()..options.connectTimeout = 10000;
     Response response;
     try {
-      response = await dio.get('$BASE_URL/api/foodss');
+      response = await dio.get('http://www.mocky.io/v2/5de660803700005f000922d6');
       if (response.data['status'] == 1) {
+        print("data is coming");
         return FoodResponse.fromJson(response.data);
       } else {
         throw response.data['message'];

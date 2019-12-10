@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:fatburger/JSON_DATA/providers/api_provider.dart';
 import 'package:fatburger/constants/values.dart';
+
 import 'package:fatburger/model/order_response.dart';
 import 'package:fatburger/model/user_response.dart';
-import 'package:fatburger/resources/api_provider.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';

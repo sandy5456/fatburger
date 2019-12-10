@@ -8,10 +8,10 @@ class MyCart extends ChangeNotifier {
 
   bool addItem(CartItem cartItem) {
     for (CartItem cart in cartItems) {
-      if (cartItem.food.shop.id != cart.food.shop.id) {
-        return false;
-      }
-      if (cartItem.food.name == cart.food.name) {
+      // if (cartItem.userid != cart.userid) {
+      //   return false;
+      // }
+      if (cartItem.productid == cart.productid) {
         cartItems[cartItems.indexOf(cart)].quantity++;
         notifyListeners();
         return true;
@@ -43,15 +43,17 @@ class MyCart extends ChangeNotifier {
 
   void removeAllInCart(Food food) {
     cartItems.removeWhere((f) {
-      return f.food.name == food.name;
+      return f.productid == food.id;
     });
     notifyListeners();
   }
 }
 
 class CartItem {
-  Food food;
+Food food;
+ int userid;
+  int productid;
   int quantity;
 
-  CartItem({this.food, this.quantity});
+  CartItem({ this.food,this.quantity,this.productid,this.userid, int qantity});
 }

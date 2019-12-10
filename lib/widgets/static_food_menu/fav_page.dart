@@ -14,22 +14,26 @@ class _FavScreenState extends State<FavScreen> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            ),
-            onPressed: () => Navigator.pop(context, false),
-          ),
-          elevation: 0.3,
-          backgroundColor: Colors.white,
-          title: Image.asset('images/logo.png', fit: BoxFit.cover)
-          // title: Text(
-          //   "Kafe Cafw",
-          //   style:
-          //       TextStyle(color: Colors.black, fontStyle: FontStyle.normal),
-          // ),
-          ),
+        // leading: IconButton(
+        //   icon: Icon(
+        //     Icons.arrow_back,
+        //     color: Colors.black,
+        //   ),
+        //   onPressed: () => Navigator.pop(context, false),
+        // ),
+        elevation: 0.3,
+        backgroundColor: Colors.white,
+        title: Text(
+          "FAVORITES",
+          style: TextStyle(color: Colors.black),
+        ),
+        // title: Image.asset('images/logo.png', fit: BoxFit.cover)
+        // title: Text(
+        //   "Kafe Cafw",
+        //   style:
+        //       TextStyle(color: Colors.black, fontStyle: FontStyle.normal),
+        // ),
+      ),
       body: Column(
         children: <Widget>[
           Container(
@@ -112,10 +116,14 @@ class _FavScreenState extends State<FavScreen> {
                                   },
                                   child: isFavorite
                                       ? Icon(
-                                          Icons.favorite,
-                                          color: Colors.red,
+                                         Icons.favorite_border,
+                                          color: Colors.brown,
+                                       
                                         )
-                                      : Icon(Icons.favorite_border,color: Colors.brown,)),
+                                      : Icon(
+                                           Icons.favorite,
+                                          color: Colors.red,
+                                        )),
                             ),
                             // Container(
 
@@ -186,14 +194,20 @@ class _FavScreenState extends State<FavScreen> {
                   top: size.height * 0.055,
                   right: size.width * 0.04,
                   child: Container(
-                    child: Text(
-                      "Qr 50",
-                      style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                          fontSize: size.width * 0.04),
+                      child: RichText(
+                    text: TextSpan(
+                      style: DefaultTextStyle.of(context).style,
+                      children: <TextSpan>[
+                        TextSpan(text: 'QAR'),
+                        TextSpan(
+                            text: ' 50',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red,
+                                fontSize: 18)),
+                      ],
                     ),
-                  ),
+                  )),
                 ),
                 Positioned(
                   bottom: size.height * 0.018,

@@ -1,6 +1,8 @@
+import 'package:fatburger/PAGES/Bottom_Cart_sheet.dart';
 import 'package:fatburger/constants/values.dart';
 import 'package:fatburger/model/foods_response.dart';
 import 'package:fatburger/notifier/cart_model.dart';
+
 import 'package:fatburger/widgets/cart_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
@@ -8,14 +10,15 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
 class FoodCard extends StatefulWidget {
-  // final Food food;
-  // FoodCard(this.food);
+  final Food food;
+  FoodCard(this.food);
 
   _FoodCardState createState() => _FoodCardState();
 }
 
-class _FoodCardState extends State<FoodCard> with SingleTickerProviderStateMixin {
- // Food get food => widget.food;
+class _FoodCardState extends State<FoodCard>
+    with SingleTickerProviderStateMixin {
+  // Food get food => widget.food;
 
   @override
   void initState() {
@@ -42,14 +45,15 @@ class _FoodCardState extends State<FoodCard> with SingleTickerProviderStateMixin
             Align(
               alignment: Alignment.topRight,
               child: Container(
-                padding: EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  color: mainColor,
-                  borderRadius: BorderRadius.only(topRight: Radius.circular(12)),
-                ),
-                child:Text("shopname")
-                // Text(food.shop.name),
-              ),
+                  padding: EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    color: mainColor,
+                    borderRadius:
+                        BorderRadius.only(topRight: Radius.circular(12)),
+                  ),
+                  child: Text("shopname")
+                  // Text(food.shop.name),
+                  ),
             )
           ],
         ),
@@ -64,7 +68,7 @@ class _FoodCardState extends State<FoodCard> with SingleTickerProviderStateMixin
         borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
         child: Image.network(
           "https://www.seriouseats.com/images/2015/07/20150728-homemade-whopper-food-lab-35-1500x1125.jpg",
-          //'$BASE_URL/uploads/${food.images[0]}',
+          // '$BASE_URL/uploads/${food.images[0]}',
           fit: BoxFit.cover,
           loadingBuilder: (context, Widget child, ImageChunkEvent progress) {
             if (progress == null) return child;
@@ -73,7 +77,8 @@ class _FoodCardState extends State<FoodCard> with SingleTickerProviderStateMixin
                 padding: EdgeInsets.all(32),
                 child: CircularProgressIndicator(
                     value: progress.expectedTotalBytes != null
-                        ? progress.cumulativeBytesLoaded / progress.expectedTotalBytes
+                        ? progress.cumulativeBytesLoaded /
+                            progress.expectedTotalBytes
                         : null),
               ),
             );
@@ -142,7 +147,7 @@ class _FoodCardState extends State<FoodCard> with SingleTickerProviderStateMixin
         children: <Widget>[
           Text(
             "QAR 50",
-           // '\$ ${food.price}',
+            // '\$ ${food.price}',
             style: titleStyle,
           ),
           Card(

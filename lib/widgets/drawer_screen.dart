@@ -43,6 +43,10 @@ class _RightNavigationBarState extends State<RightNavigationBar> {
                       leading: const Icon(Icons.person,color: Colors.white54,),
                       title: const Text('Your account',style: TextStyle(color:Colors.white54 ),),
                     ),
+                      new ListTile(
+                      leading: const Icon(Icons.person_outline,color: Colors.white54,),
+                      title: const Text('Admin',style: TextStyle(color:Colors.white54 ),),
+                    ),
                     new ListTile(
                       leading: const Icon(Icons.help,color: Colors.white54,),
                       title: const Text('Help',style: TextStyle(color:Colors.white54 ),),

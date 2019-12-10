@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fatburger/notifier/cart_model.dart';
+import 'package:fatburger/widgets/Car_Number.dart';
 
 import 'package:fatburger/widgets/bottom_navigation.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +11,14 @@ import 'package:provider/provider.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext ) {
     return ChangeNotifierProvider(
       builder: (context) => MyCart(),
       child: MaterialApp(
+        themeMode: ThemeMode.dark,
         title: 'Flutter Food Ordering',
         showSemanticsDebugger: false,
         debugShowCheckedModeBanner: false,
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
     //        routes: <String, WidgetBuilder>{
     //   '/HomeScreen': (BuildContext context) => new YoutubeMain()
     // },
-        home: YoutubeMain()),
+        home: PinEntryTextField()),
     );
   }
 }

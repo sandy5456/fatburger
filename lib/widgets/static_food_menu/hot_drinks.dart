@@ -126,7 +126,7 @@ class _HomeTopPropertyState extends State<HomeTopProperty> {
                                     ],
                                   ),
                                   SizedBox(
-                                    width: 60,
+                                    width: 20,
                                   ),
                                   Container(
                                     padding: EdgeInsets.only(top: 5),
@@ -145,7 +145,7 @@ class _HomeTopPropertyState extends State<HomeTopProperty> {
                               color: Colors.black,
                               onPressed: () => Navigator.pop(context),
                               child: Text(
-                                "CONFORM",
+                                "CONFIRM",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20),
                               ),
@@ -217,7 +217,7 @@ class _HomeTopPropertyState extends State<HomeTopProperty> {
                                                           fontSize: 18),
                                                     ),
                                                     SizedBox(
-                                                      width: 45,
+                                                      width: 35,
                                                     ),
                                                     Text(
                                                       category["price"],

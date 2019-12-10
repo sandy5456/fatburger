@@ -125,8 +125,8 @@ class _Food2State extends State<Food2> {
                                                 ),
                                     ],
                                   ),
-                                  SizedBox(
-                                    width: 60,
+                                    SizedBox(
+                                    width: 35,
                                   ),
                                   Container(
                                     padding: EdgeInsets.only(top: 5),
@@ -145,7 +145,7 @@ class _Food2State extends State<Food2> {
                               color: Colors.black,
                               onPressed: () => Navigator.pop(context),
                               child: Text(
-                                "CONFORM",
+                                "CONFIRM",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20),
                               ),
@@ -217,7 +217,7 @@ class _Food2State extends State<Food2> {
                                                           fontSize: 18),
                                                     ),
                                                     SizedBox(
-                                                      width: 45,
+                                                      width: 35,
                                                     ),
                                                     Text(
                                                       category["price"],

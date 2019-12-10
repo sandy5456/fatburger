@@ -1,23 +1,29 @@
 class FoodResponse {
-  int status;
-  String message;
-  List<Food> foods;
+  final String catogeryname;
+  List<Food>foods;
 
-  FoodResponse({this.status, this.message, this.foods});
+  FoodResponse({
+    this.catogeryname,
+    this.foods
+  });
 
-  factory FoodResponse.fromJson(Map<String, dynamic> json) => FoodResponse(
-        status: json["status"],
-        message: json["message"],
-        foods: List<Food>.from(json["foods"].map((x) => Food.fromJson(x))),
-      );
+  factory FoodResponse.fromJson(Map<String, dynamic> json) {
+
+    return FoodResponse(
+     foods: (json['products'] as List)
+          .map((i) => Food.fromJson(i))
+          .toList(),
+      catogeryname: json['categoryName'],
+    );
+  }
 }
-
-class Food {
-  List<String> images;
-  String id;
+//FoodResponse Food
+class Food{
+String images;
+  int id;
   String name;
   String description;
-  double price;
+  int price;
   int rating;
   Shop shop;
   DateTime createdAt;
@@ -25,7 +31,7 @@ class Food {
   int v;
 
   Food({
-    this.images,
+ this.images,
     this.id,
     this.name,
     this.description,
@@ -36,8 +42,15 @@ class Food {
     this.updatedAt,
     this.v,
   });
+  factory Food.fromJson(Map<String, dynamic> json){
+    return Food(
+      id: json['id'],
+      name: json['productName'],
+      images: json['imageurl'],
+      price: json['price']
 
       );
+}
 }
 
 class Shop {
@@ -63,3 +76,5 @@ enum FoodTypes {
   Burger,
   Dessert,
 }
+
+  
