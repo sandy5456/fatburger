@@ -1,11 +1,15 @@
 class StateManagmentData{
-  String productId;
+  String carNumber;
   String quantity;
-  setProductValue(String value) {
-    productId= value;
+  String tableNumber;
+  setCarNumberValue(String value) {
+    carNumber= value;
   }
   setQuantityValue(String value){
     quantity=value;
+  }
+  setTablenumberValue(String value){
+    tableNumber=value;
   }
 
 }
