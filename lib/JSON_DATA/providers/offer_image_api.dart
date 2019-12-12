@@ -9,7 +9,7 @@ class OfferImageProvider {
   List<OfferImageModel> list;
 
   Client client = Client();
-  String propertyUrl = "http://www.mocky.io/v2/5de7a0923700007b02092ac8";
+  String propertyUrl = "http://www.mocky.io/v2/5df1f4d43100007b009a2e4c";
   Future<List<OfferImageModel>> fetchImageList() async {
     try {
       final response = await client.get(propertyUrl);

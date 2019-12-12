@@ -12,7 +12,8 @@ class ConFirmationPage extends StatefulWidget {
   String tableNo;
   String carNo;
   String outsideData;
-  ConFirmationPage({this.carNo, this.outsideData, this.tableNo});
+  String paymentOption;
+  ConFirmationPage({this.carNo, this.outsideData, this.tableNo,this.paymentOption});
   @override
   _ConFirmationPageState createState() => _ConFirmationPageState();
 }
@@ -78,10 +79,13 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
               // ),
 
               buildItemsList(context),
-              Divider(),
-              deliveryConfirmation(context),
-              Divider(),
+
+              //  deliveryConfirmation(context),
+               deliveryDetails(context),
+              paymetDetails(context),
+           
               confirmationButton(context),
+             
             ],
           ),
         ));
@@ -91,7 +95,7 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
     return Expanded(
         child: Container(
       color: Colors.white,
-      height: MediaQuery.of(context).size.height * 0.05,
+      height: MediaQuery.of(context).size.height * 0.04,
       child: StreamBuilder<List<GetCartModel>>(
           stream: getCartBloc.getAllCartItems,
           builder: (context, AsyncSnapshot<List<GetCartModel>> snapshot) {
@@ -114,9 +118,6 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
                           phoneNumber: phoneNumber,
                         );
                       }),
-                  SizedBox(
-                    height: 5,
-                  ),
                 ],
               );
             } else {
@@ -131,22 +132,98 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
     ));
   }
 
-  Widget deliveryConfirmation(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.342,
-      child: Column(
-        children: <Widget>[
-          Text("Amount Payble"),
-          Text("Will be Delivered To...")
-        ],
-      ),
-    );
+  Widget deliveryDetails(BuildContext context) {
+    if (widget.carNo != null) {
+      return Container(
+        alignment: Alignment.topRight,
+        color: Colors.white,
+        height: MediaQuery.of(context).size.height * 0.045,
+        child: Row(
+          children: <Widget>[
+            Text(
+              "   will be delivered at carNo",
+              style: subtitleStyle,
+            ),
+            SizedBox(width: MediaQuery.of(context).size.width * 0.26),
+            Text("${widget.carNo}",
+                style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black54,
+                    fontSize: 15))
+          ],
+        ),
+      );
+    }
+    if (widget.tableNo != null) {
+      return Container(
+        alignment: Alignment.topRight,
+        color: Colors.white,
+        height: MediaQuery.of(context).size.height * 0.045,
+        child:Row(
+          children: <Widget>[
+            Text(
+              "  will be delivered to tableNo",
+              style: subtitleStyle,
+            ),
+            SizedBox(width: MediaQuery.of(context).size.width * 0.24),
+            Text("${widget.tableNo}",
+                style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black54,
+                    fontSize: 15))
+          ],
+        ),
+      );
+    } else {
+      return Container(
+        alignment: Alignment.topRight,
+        color: Colors.white,
+        height: MediaQuery.of(context).size.height * 0.06,
+        child: Text(
+          " Your Order will be delivered to ${widget.outsideData}",
+          style: titleStyle2,
+        ),
+      );
+    }
+  }
+
+  Widget paymetDetails(BuildContext context) {
+    if (widget.paymentOption != null) {
+      return Container(
+        color: Colors.white,
+        height: MediaQuery.of(context).size.height * 0.17,
+        child: Text(
+          "   Amount will be collected at Your Locatiion...",
+          style: subtitleStyle,
+        ),
+      );
+    } else {
+      return Container(
+        alignment: Alignment.topRight,
+        color: Colors.white,
+        height: MediaQuery.of(context).size.height * 0.16,
+        child: Row(
+          children: <Widget>[
+            Text(
+              "  Payment method",
+              style: subtitleStyle,
+            ),
+            SizedBox(width: MediaQuery.of(context).size.width * 0.3),
+            Text("Online Payment",
+                style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black54,
+                    fontSize: 15))
+          ],
+        ),
+      );
+    }
   }
 
   Widget confirmationButton(context) {
     return Center(
       child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.071,
+          height: MediaQuery.of(context).size.height * 0.10,
           width: double.infinity, // match_parent
           child: FlatButton(
             color: Colors.white,

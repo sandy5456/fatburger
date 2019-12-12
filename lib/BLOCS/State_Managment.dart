@@ -2,6 +2,7 @@ class StateManagmentData{
   String carNumber;
   String quantity;
   String tableNumber;
+  String outsidedata;
   setCarNumberValue(String value) {
     carNumber= value;
   }
@@ -10,6 +11,9 @@ class StateManagmentData{
   }
   setTablenumberValue(String value){
     tableNumber=value;
+  }
+   setoutsideValue(String value){
+    outsidedata=value;
   }
 
 }

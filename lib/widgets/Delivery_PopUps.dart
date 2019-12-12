@@ -115,23 +115,7 @@ deliveryOptionPopUpBox(BuildContext context) {
                         ),
                       )),
 
-                  // SizedBox(
-                  //   height: MediaQuery.of(context).size.height * 0.099,
-                  // ),
-                  // SizedBox(
-                  //     height: MediaQuery.of(context).size.height * 0.07,
-                  //     width: double.infinity, // match_parent
-                  //     child: FlatButton(
-                  //       color: Colors.white,
-                  //       textColor: Colors.black,
-                  //       onPressed: () {
-
-                  //       },
-                  //       child: Text(
-                  //         "CONFIRM",
-                  //         style: TextStyle(fontSize: 20.0),
-                  //       ),
-                  //     )),
+                
                 ],
               ),
             ));
@@ -177,34 +161,14 @@ carNumberPopUPbox(BuildContext context) {
                     autoFocus: true,
                     //textInputAction: TextInputAction.go,
                     onSubmit: (String pin) async {
-                      navigateToPage(
-                          context,
-                          ConFirmationPage(
-                            carNo: pin,
-                          ));
+                    paymenOptionPopUpBox(context);
 
                       await stateManagmentData.setCarNumberValue(pin);
                       print("enterd pin is$pin");
                     },
                   ),
                 ),
-                // SizedBox(
-                //   height: MediaQuery.of(context).size.height * 0.14,
-                // ),
-                // SizedBox(
-                //     height: MediaQuery.of(context).size.height * 0.071,
-                //     width: double.infinity, // match_parent
-                //     child: FlatButton(
-                //       color: Colors.white,
-                //       textColor: Colors.black,
-                //       onPressed: () {
-                //         print(stateManagmentData.carNumber);
-                //       },
-                //       child: Text(
-                //         "CONFIRM",
-                //         style: TextStyle(fontSize: 20.0),
-                //       ),
-                //     )),
+            
               ],
             )),
           ),
@@ -283,12 +247,10 @@ tableNumberPopUPbox(BuildContext context, acontroller, hint) {
                     child: FlatButton(
                       color: Colors.white,
                       textColor: Colors.black,
-                      onPressed: () {
-                        navigateToPage(
-                            context,
-                            ConFirmationPage(
-                              tableNo: acontroller.text,
-                            ));
+                      onPressed: () async {
+                      paymenOptionPopUpBox(context);
+                        await stateManagmentData
+                            .setTablenumberValue(acontroller.text);
                       },
                       child: Text(
                         "CONFIRM",
@@ -373,12 +335,10 @@ outSidePopUPbox(BuildContext context, controller, hint) {
                     child: FlatButton(
                       color: Colors.white,
                       textColor: Colors.black,
-                      onPressed: () {
-                        navigateToPage(
-                            context,
-                            ConFirmationPage(
-                              outsideData: controller.text,
-                            ));
+                      onPressed: () async{
+                        paymenOptionPopUpBox(context);
+                              await stateManagmentData
+                            .setoutsideValue(controller.text);
                       },
                       child: Text(
                         "CONFIRM",
@@ -389,5 +349,111 @@ outSidePopUPbox(BuildContext context, controller, hint) {
             )),
           ),
         );
+      });
+}
+
+paymenOptionPopUpBox(BuildContext context) {
+  return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(40.0)), //this right here
+            child: Container(
+              color: Colors.black,
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  ),
+                  SizedBox(
+                    child: Text(
+                      "Choose your Payment",
+                      style: TextStyle(color: Colors.white54, fontSize: 20),
+                    ),
+                    height: MediaQuery.of(context).size.height * 0.1,
+                  ),
+
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      width: double.infinity, // match_parent
+                      child: FlatButton(
+                        color: Colors.black,
+                        textColor: Colors.white38,
+                        onPressed: () {
+                            navigateToPage(
+                            context,
+                            ConFirmationPage(
+                              outsideData: stateManagmentData.outsidedata,
+                              tableNo: stateManagmentData.tableNumber,
+                              carNo: stateManagmentData.carNumber,
+                              paymentOption: "1",
+                            ));
+                            print(stateManagmentData.outsidedata,);
+                            print(stateManagmentData.tableNumber);
+                            print(stateManagmentData.carNumber);
+                        },
+                        child: Row(
+                          children: <Widget>[
+                            Image.asset(
+                              "images/cod.png",
+                              height:
+                                  MediaQuery.of(context).size.height * 0.05,
+                              color: Colors.white38,
+                            ),
+                            Text(
+                              "         Cod",
+                              style: TextStyle(
+                                  fontSize: 20.0, color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      )),
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      width: double.infinity, // match_parent
+                      child: FlatButton(
+                        color: Colors.black,
+                        textColor: Colors.white38,
+                        onPressed: () {},
+                        child: Row(
+                          children: <Widget>[
+                            Image.asset(
+                              "images/card.png",
+                              // width:MediaQuery.of(context).size.width * 0.3,
+                              height: MediaQuery.of(context).size.height * 0.05,
+                              color: Colors.white38,
+                            ),
+                            Text(
+                              "       Online",
+                              style: TextStyle(
+                                  fontSize: 20.0, color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      )),
+
+                  // SizedBox(
+                  //   height: MediaQuery.of(context).size.height * 0.099,
+                  // ),
+                  // SizedBox(
+                  //     height: MediaQuery.of(context).size.height * 0.07,
+                  //     width: double.infinity, // match_parent
+                  //     child: FlatButton(
+                  //       color: Colors.white,
+                  //       textColor: Colors.black,
+                  //       onPressed: () {
+
+                  //       },
+                  //       child: Text(
+                  //         "CONFIRM",
+                  //         style: TextStyle(fontSize: 20.0),
+                  //       ),
+                  //     )),
+                ],
+              ),
+            ));
       });
 }

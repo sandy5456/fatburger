@@ -10,7 +10,7 @@ class GettingCARTApi {
   List<GetCartModel> list;
 
   Client client = Client();
-  String getCartUrl = "http://www.mocky.io/v2/5dee1b8c3300004a0098442e";
+  String getCartUrl = "http://www.mocky.io/v2/5df1f37d31000074009a2e41";
   Future<List<GetCartModel>> fetchCARTList() async {
     try {
       final response = await client.get(getCartUrl);
