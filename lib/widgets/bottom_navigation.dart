@@ -26,14 +26,15 @@ class _YoutubeMainState extends State<YoutubeMain> {
   @override
   Widget build(BuildContext context) {
     List<Widget> _screens = [
-      MyHomePage(),
+      MyHomePage(), //1
       //HomeScreen(),
-      OffferScreen(),
+      OffferScreen(), //2
       // Center(child: Text("Subscriptions",style: TextStyle(color: Colors.black),)),
+      MyHomePage(), //3
 
-      FavScreen(),
+      FavScreen(), //4
 
-      RightNavigationBar()
+      RightNavigationBar() //5
     ];
 
     return Scaffold(
@@ -53,69 +54,82 @@ class _YoutubeMainState extends State<YoutubeMain> {
       //   ),
       //   ),
 
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Transform.scale(
-        scale: 1,
-        child: FloatingActionButton(
-            backgroundColor: Colors.white,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => YoutubeMain()),
-              );
-            },
-            child: Image.asset("images/logo1.png"),
-            elevation: 2.0),
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: Transform.scale(
+      //   scale: 1,
+      //   child: FloatingActionButton(
+      //       backgroundColor: Colors.white,
+      //       onPressed: () {
+      //         Navigator.push(
+      //           context,
+      //           MaterialPageRoute(builder: (context) => YoutubeMain()),
+      //         );
+      //       },
+      //       child: Image.asset("images/logo1.png"),
+      //       elevation: 2.0),
+      // ),
       body: _screens[_currentIndex],
 
       bottomNavigationBar: BottomNavigationBar(
           elevation: 0,
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.black,
           currentIndex: _currentIndex,
           type: BottomNavigationBarType.fixed,
-          fixedColor: Color(0xff84020e),
-          unselectedItemColor: Colors.black,
+          fixedColor: Colors.white, //Color(0xff84020e),
+          unselectedItemColor: Colors.white60,
           onTap: _onTapped,
           items: [
             BottomNavigationBarItem(
-              activeIcon: Image.asset("images/HOME1.png", height: 35),
+              activeIcon: Image.asset("images/home.png",
+                  color: Colors.white, height: 28),
               title: Text(
                 "Home",
                 // style: TextStyle(color: Color(0xff84020e)),
               ),
-              icon: Image.network(
-                "https://static.thenounproject.com/png/1306759-200.png",
-                height: 35,
+              icon: Image.asset(
+                "images/home.png",
+                color: Colors.white60,
+                height: 28,
               ),
             ),
-
             BottomNavigationBarItem(
-              activeIcon: Image.asset("images/OFFER1.png", height: 35),
+              activeIcon: Image.asset("images/offers.png",
+                  color: Colors.white, height: 28),
               title: Text("offers"),
-              icon: Image.network(
-                "https://cdn0.iconfinder.com/data/icons/shopping-4-7/68/169-512.png",
-                height: 30,
+              icon: Image.asset(
+                "images/offers.png",
+                color: Colors.white60,
+                height: 28,
               ),
             ),
-            //  BottomNavigationBarItem(
-            //     title: Text(""), icon: Image.asset("images/logo.png",height: 50,width: 50,),),
             BottomNavigationBarItem(
-              activeIcon: Image.asset("images/FAV1.png", height: 35),
+              title: Text(""),
+              icon: Image.asset(
+                "images/logo.png",
+                height: 40,
+                width: 100,
+              ),
+            ),
+            BottomNavigationBarItem(
+              activeIcon: Image.asset("images/fav.png",
+                  color: Colors.white, height: 28),
               title: Text("favourite"),
-              icon: Image.network(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTM5IKxarGuwdtAV8cd31jc0-BhGb__jHSC_6TegoypKvi5DqA0&s",
-                height: 30,
+              icon: Image.asset(
+                "images/fav.png",
+                color: Colors.white60,
+                height: 28,
               ),
             ),
             BottomNavigationBarItem(
-              activeIcon: Image.asset("images/SETTINGS1.png", height: 35),
+              activeIcon: Image.asset("images/set.png",
+                  color: Colors.white, height: 28),
               title: Text(
                 "settings",
               ),
-              icon: Image.network(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFEcnC4OXu-3RYWD5O6-3vZgV6_iYKye15UtrE0c51VakhzlGL&s",
-                height: 30,
+              icon: Image.asset(
+                "images/set.png",
+                color: Colors.white60,
+                height: 28,
               ),
             ),
           ]),

@@ -1,7 +1,10 @@
+import 'package:credit_card/credit_card_form.dart';
 import 'package:fatburger/BLOCS/State_Managment.dart';
 import 'package:fatburger/PAGES/Confirmation_page.dart';
+
 import 'package:fatburger/PAGES/Dlivery_Option.dart';
 import 'package:fatburger/widgets/Car_Number.dart';
+import 'package:fatburger/widgets/Credicard_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_input_text_field/pin_input_text_field.dart';
@@ -161,7 +164,7 @@ carNumberPopUPbox(BuildContext context) {
                     autoFocus: true,
                     //textInputAction: TextInputAction.go,
                     onSubmit: (String pin) async {
-                    paymenOptionPopUpBox(context);
+                    paymenOptionPopUpBox(context,pin,"null","null");
 
                       await stateManagmentData.setCarNumberValue(pin);
                       print("enterd pin is$pin");
@@ -248,7 +251,7 @@ tableNumberPopUPbox(BuildContext context, acontroller, hint) {
                       color: Colors.white,
                       textColor: Colors.black,
                       onPressed: () async {
-                      paymenOptionPopUpBox(context);
+                      paymenOptionPopUpBox(context,"null",acontroller.text,"null");
                         await stateManagmentData
                             .setTablenumberValue(acontroller.text);
                       },
@@ -336,7 +339,7 @@ outSidePopUPbox(BuildContext context, controller, hint) {
                       color: Colors.white,
                       textColor: Colors.black,
                       onPressed: () async{
-                        paymenOptionPopUpBox(context);
+                        paymenOptionPopUpBox(context,"null","null",controller.text);
                               await stateManagmentData
                             .setoutsideValue(controller.text);
                       },
@@ -352,7 +355,7 @@ outSidePopUPbox(BuildContext context, controller, hint) {
       });
 }
 
-paymenOptionPopUpBox(BuildContext context) {
+paymenOptionPopUpBox(BuildContext context,String carno,String tableNo,String outsideData,) {
   return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -386,14 +389,14 @@ paymenOptionPopUpBox(BuildContext context) {
                             navigateToPage(
                             context,
                             ConFirmationPage(
-                              outsideData: stateManagmentData.outsidedata,
-                              tableNo: stateManagmentData.tableNumber,
-                              carNo: stateManagmentData.carNumber,
-                              paymentOption: "1",
+                              outsideData: outsideData,
+                              tableNo: tableNo,
+                              carNo: carno,
+                              paymentOption: "cod",
                             ));
-                            print(stateManagmentData.outsidedata,);
-                            print(stateManagmentData.tableNumber);
-                            print(stateManagmentData.carNumber);
+                            // print(stateManagmentData.outsidedata,);
+                            // print(stateManagmentData.tableNumber);
+                            // print(stateManagmentData.carNumber);
                         },
                         child: Row(
                           children: <Widget>[
@@ -417,7 +420,14 @@ paymenOptionPopUpBox(BuildContext context) {
                       child: FlatButton(
                         color: Colors.black,
                         textColor: Colors.white38,
-                        onPressed: () {},
+                        onPressed: () { 
+                          navigateToPage(context, CraditCardForm1(
+                            outsideData: outsideData,
+                              tableNo: tableNo,
+                              carNo: carno,
+                              paymentOption: "online",
+                          ));
+                        },
                         child: Row(
                           children: <Widget>[
                             Image.asset(

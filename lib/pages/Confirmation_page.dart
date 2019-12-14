@@ -1,10 +1,13 @@
 import 'package:fatburger/BLOCS/Cart_Bloc.dart';
+import 'package:fatburger/BLOCS/CheckOut_bloc.dart';
 import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
 import 'package:fatburger/MODEL/Get_Cart_Model.dart';
+import 'package:fatburger/MODEL/checkOut_model.dart';
 import 'package:fatburger/constants/values.dart';
 import 'package:fatburger/widgets/Cart_Item_Screen.dart';
 import 'package:fatburger/widgets/Confirmation_cart.dart';
 import 'package:fatburger/widgets/Delivery_PopUps.dart';
+import 'package:fatburger/widgets/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,13 +16,15 @@ class ConFirmationPage extends StatefulWidget {
   String carNo;
   String outsideData;
   String paymentOption;
-  ConFirmationPage({this.carNo, this.outsideData, this.tableNo,this.paymentOption});
+  ConFirmationPage(
+      {this.carNo, this.outsideData, this.tableNo, this.paymentOption});
   @override
   _ConFirmationPageState createState() => _ConFirmationPageState();
 }
 
 class _ConFirmationPageState extends State<ConFirmationPage> {
   String phoneNumber;
+  CheckOutModel checkOutModel;
 
   Future<Null> getSharedPrefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -46,13 +51,13 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          // leading: IconButton(
-          //   icon: Icon(
-          //     Icons.arrow_back,
-          //     color: Colors.black,
-          //   ),
-          //   onPressed: () => Navigator.pop(context, false),
-          // ),
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () => Navigator.pop(context, false),
+          ),
           elevation: 0.3,
           backgroundColor: Colors.white,
           title: Text(
@@ -81,11 +86,10 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
               buildItemsList(context),
 
               //  deliveryConfirmation(context),
-               deliveryDetails(context),
+              deliveryDetails(context),
               paymetDetails(context),
-           
+
               confirmationButton(context),
-             
             ],
           ),
         ));
@@ -133,7 +137,7 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
   }
 
   Widget deliveryDetails(BuildContext context) {
-    if (widget.carNo != null) {
+    if (widget.carNo != "null") {
       return Container(
         alignment: Alignment.topRight,
         color: Colors.white,
@@ -154,12 +158,12 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
         ),
       );
     }
-    if (widget.tableNo != null) {
+    if (widget.tableNo != "null") {
       return Container(
         alignment: Alignment.topRight,
         color: Colors.white,
         height: MediaQuery.of(context).size.height * 0.045,
-        child:Row(
+        child: Row(
           children: <Widget>[
             Text(
               "  will be delivered to tableNo",
@@ -188,7 +192,7 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
   }
 
   Widget paymetDetails(BuildContext context) {
-    if (widget.paymentOption != null) {
+    if (widget.paymentOption == "cod") {
       return Container(
         color: Colors.white,
         height: MediaQuery.of(context).size.height * 0.17,
@@ -228,12 +232,33 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
           child: FlatButton(
             color: Colors.white,
             textColor: Colors.black,
-            onPressed: () {
-              // navigateToPage(
-              //     context,
-              //     ConFirmationPage(
-
-              //     ));
+            onPressed: () async {
+              checkOutModel = new CheckOutModel(
+                tableNo: widget.tableNo,
+                carNo: widget.carNo,
+                outsideData: widget.outsideData,
+                paymentOption: widget.paymentOption,
+              );
+              cheakOutBloc.addPostData(checkOutModel);
+                 showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              backgroundColor: Colors.black,
+                              title: new Text("Orderd Placed succefully",style: TextStyle(color:Colors.white,)),
+                              //content: new Text("Body"),
+                              actions: <Widget>[
+                                new FlatButton(
+                                  child: new Text("Go to home",style: TextStyle(color:Colors.green,)),
+                                  onPressed: () {
+                                     Navigator.push(
+                           context,
+                           MaterialPageRoute(builder: (context) =>YoutubeMain()));
+                                  },
+                                )
+                              ],
+                            );
+                          });
             },
             child: Text(
               "CONFIRM",
