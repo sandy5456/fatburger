@@ -1,7 +1,8 @@
 import 'package:fatburger/BLOCS/Cart_Bloc.dart';
 import 'package:fatburger/BLOCS/CheckOut_bloc.dart';
 import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
-import 'package:fatburger/MODEL/Get_Cart_Model.dart';
+
+import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
 import 'package:fatburger/MODEL/checkOut_model.dart';
 import 'package:fatburger/constants/values.dart';
 import 'package:fatburger/widgets/Cart_Item_Screen.dart';
@@ -100,9 +101,9 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
         child: Container(
       color: Colors.white,
       height: MediaQuery.of(context).size.height * 0.04,
-      child: StreamBuilder<List<GetCartModel>>(
+      child: StreamBuilder<List<GetCartModel2>>(
           stream: getCartBloc.getAllCartItems,
-          builder: (context, AsyncSnapshot<List<GetCartModel>> snapshot) {
+          builder: (context, AsyncSnapshot<List<GetCartModel2>> snapshot) {
             // if (!["", null].contains(phoneNumber)) {
             if (snapshot.hasData) {
               return Column(

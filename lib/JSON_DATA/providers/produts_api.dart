@@ -8,7 +8,7 @@ class PropertyProvider {
   List<FoodResponse> list;
 
   Client client = Client();
-  String propertyUrl = "http://www.mocky.io/v2/5de8ab0d3100004c006b12fe";
+  String propertyUrl = "http://142.93.219.45:8080/KyanCafe/kyancafe/showsMenu";
   Future<List<FoodResponse>> fetchPropertyList() async {
     try {
       final response = await client.get(propertyUrl);

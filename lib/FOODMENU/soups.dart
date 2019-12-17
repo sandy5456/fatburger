@@ -1,4 +1,6 @@
 import 'package:fatburger/BLOCS/Cart_Bloc.dart';
+import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
+import 'package:fatburger/PAGES/Cart_Item_Screen1.dart';
 
 import 'package:fatburger/blocs/offer_images_bolc.dart';
 import 'package:fatburger/blocs/propertybloc.dart';
@@ -55,7 +57,7 @@ class _SoupsState extends State<Soups> {
                         // height: MediaQuery.of(context).size.height * 0.8,
                         decoration: BoxDecoration(
                           image: new DecorationImage(
-                            image: new NetworkImage(widget.foods[index].images),
+                            image: new NetworkImage("http://142.93.219.45:8080/filemanager/"+widget.foods[index].images),
                             fit: BoxFit.cover,
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(7.0)),
@@ -184,13 +186,13 @@ class _SoupsState extends State<Soups> {
     showModalBottomSheet(
       shape: roundedRectangle40,
       context: context,
-      builder: (context) => CartItemList(),
+      builder: (context) => CartItemList1(),
     );
   }
 
   addingtoCart() async {
-    await cartBloc.addproductToCart(
-        widget.productId, widget.phoneNumber, widget.quantity);
+    await getCartBloc.additemsToCart(
+        widget.productId, widget.quantity);
   }
 
   alertBox(BuildContext context, int index) {
@@ -210,7 +212,7 @@ class _SoupsState extends State<Soups> {
                         borderRadius: BorderRadius.all(Radius.circular(0.0)),
                         image: new DecorationImage(
                           image: new NetworkImage(
-                              widget.foods[index].images), //Image
+                              "http://142.93.219.45:8080/filemanager/"+widget.foods[index].images), //Image
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -248,7 +250,7 @@ class _SoupsState extends State<Soups> {
                                           itemSize: 14,
                                           unratedColor: Colors.white,
                                           itemPadding:
-                                              EdgeInsets.only(right: 4.0),
+                                              EdgeInsets.only(right: 2.0),
                                           ignoreGestures: true,
                                           itemBuilder: (context, index) => Icon(
                                               Icons.star,
@@ -321,7 +323,7 @@ class _SoupsState extends State<Soups> {
                           textColor: Colors.white,
                           onPressed: () {
                             setState(() {
-                              addingtoCart();
+                              //addingtoCart();
                             });
                           },
                           child: Text(

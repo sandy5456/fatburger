@@ -23,7 +23,7 @@ String images;
   int id;
   String name;
   String description;
-  int price;
+  double price;
   int rating;
   Shop shop;
   DateTime createdAt;

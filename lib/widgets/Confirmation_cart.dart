@@ -1,6 +1,7 @@
 import 'package:fatburger/BLOCS/Cart_Bloc.dart';
 import 'package:fatburger/MODEL/Cart_Model.dart';
-import 'package:fatburger/MODEL/Get_Cart_Model.dart';
+
+import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
 import 'package:fatburger/constants/values.dart';
 import 'package:fatburger/widgets/static_food_menu/increment_and_dicriment.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class ConfirmationCartItems extends StatelessWidget {
   String outsideData;
   String totalPrice="25";
   String totalItems="5";
-  List<CartProducts> products;
+  List<CartProducts2> products;
 
   final Function removeItem;
 
@@ -70,7 +71,7 @@ class ConfirmationCartItems extends StatelessWidget {
                                           image: DecorationImage(
                                               fit: BoxFit.fitHeight,
                                               image: NetworkImage(
-                                                  "${products[index].image}")),
+                                                  "http://142.93.219.45:8080/filemanager/"+products[index].productInfo.image)),
                                           borderRadius:
                                               BorderRadius.all(Radius.circular(8.0)),
                                         ),
@@ -92,7 +93,7 @@ class ConfirmationCartItems extends StatelessWidget {
                                             Container(
                                               child: Flexible(
                                                 child: Text(
-                                                  "${products[index].name}",
+                                                  "${products[index].productInfo.name}",
                                                   overflow: TextOverflow.visible,
                                                   style: TextStyle(
                                                       fontWeight: FontWeight.bold,
@@ -191,7 +192,7 @@ class ConfirmationCartItems extends StatelessWidget {
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 18)),
                                           TextSpan(
-                                              text: "${products[index].price}",
+                                              text: "${products[index].productInfo.price}",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.normal,
                                                   color: Colors.green,

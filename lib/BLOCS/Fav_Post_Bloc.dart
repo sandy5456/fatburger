@@ -5,7 +5,7 @@ import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
 
 import 'package:rxdart/rxdart.dart';
 
-class CartBloc {
+class FavPostBloc {
   final _repository = Repository();
   final _cartFetcher = PublishSubject<GetCartModel2>();
 
@@ -18,12 +18,12 @@ class CartBloc {
     _cartFetcher.sink.add(cartModel);
   }
 
-  addproductToCart(String productId, String phone,String quantity)  {
-    _repository.addProductToCart(productId, phone,quantity);
+  addproductToFav(String productId, String phone)  {
+    _repository.addProductToFav(productId, phone);
   }
 
-  removeProductFromCart(String productId,String phone) {
-    _repository.removeProductFromCart(productId,phone);
+  removeProductFromFav(String productId,String phone) {
+    _repository.removeProductFromFav(productId,phone);
   }
 
   dispose() async {
@@ -32,4 +32,4 @@ class CartBloc {
   }
 }
 
-final cartBloc = CartBloc();
+final favPostBloc = FavPostBloc();

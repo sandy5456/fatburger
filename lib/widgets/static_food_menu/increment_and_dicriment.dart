@@ -1,4 +1,5 @@
 import 'package:fatburger/BLOCS/Cart_Bloc.dart';
+import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
 import 'package:fatburger/BLOCS/State_Managment.dart';
 import 'package:flutter/material.dart';
 
@@ -70,7 +71,12 @@ class _NumberCountDemoState extends State<NumberCountDemo> {
                 padding: const EdgeInsets.all(0.0),
                 textColor: Colors.white,
                 color: Colors.white,
-                onPressed: minus,
+                onPressed: () {
+                  setState(() {
+                    if (count != 0) count--;
+                    removingfromCart();
+                  });
+                },
                 child: new Icon(
                     const IconData(0xe15b, fontFamily: 'MaterialIcons'),
                     size: 20,
@@ -110,7 +116,11 @@ class _NumberCountDemoState extends State<NumberCountDemo> {
   }
 
   addingtoCart() async {
-    await cartBloc.addproductToCart(
-        "${widget.productId}", "50372282", "$count");
+    await getCartBloc.additemsToCart(
+        "${widget.productId}", "$count");
+  }
+
+  removingfromCart() async {
+    await cartBloc.removeProductFromCart("${widget.productId}", "50372282");
   }
 }

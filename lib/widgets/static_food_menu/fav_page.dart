@@ -1,3 +1,4 @@
+import 'package:fatburger/BLOCS/Fav_Post_Bloc.dart';
 import 'package:fatburger/widgets/static_food_menu/increment_and_dicriment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -8,7 +9,8 @@ class FavScreen extends StatefulWidget {
 }
 
 class _FavScreenState extends State<FavScreen> {
-  bool isFavorite = false;
+  bool isFavorite = true;
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -95,7 +97,7 @@ class _FavScreenState extends State<FavScreen> {
                               ),
                             ),
                             SizedBox(
-                              height: size.height * 0.01,
+                              height: size.height * 0.02,
                             ),
                             Container(
                               child: Text(
@@ -112,16 +114,21 @@ class _FavScreenState extends State<FavScreen> {
                               child: InkWell(
                                   onTap: () {
                                     isFavorite = !isFavorite;
-                                    setState(() {});
+                                    setState(() {
+                                      if (isFavorite == false) {
+                                        removefav();
+                                      } else {
+                                        addTofav();
+                                      }
+                                    });
                                   },
                                   child: isFavorite
                                       ? Icon(
-                                         Icons.favorite_border,
-                                          color: Colors.brown,
-                                       
+                                          Icons.favorite,
+                                          color: Colors.red,
                                         )
                                       : Icon(
-                                           Icons.favorite,
+                                          Icons.favorite_border,
                                           color: Colors.red,
                                         )),
                             ),
@@ -211,10 +218,10 @@ class _FavScreenState extends State<FavScreen> {
                 ),
                 Positioned(
                   bottom: size.height * 0.018,
-                  left: size.width * 0.38,
+                  left: size.width * 0.41,
                   child: Container(
-                      width: MediaQuery.of(context).size.width * 0.40,
-                      height: MediaQuery.of(context).size.height * 0.05,
+                      width: MediaQuery.of(context).size.width * 0.25,
+                      height: MediaQuery.of(context).size.height * 0.04,
                       child: PluseAndMinus()),
                 ),
                 // Positioned(
@@ -238,5 +245,13 @@ class _FavScreenState extends State<FavScreen> {
         ],
       ),
     );
+  }
+
+  removefav() async{
+    await favPostBloc.removeProductFromFav("2", "50372282");
+  }
+
+  addTofav() async{
+   await favPostBloc.addproductToFav("2", "50372282");
   }
 }

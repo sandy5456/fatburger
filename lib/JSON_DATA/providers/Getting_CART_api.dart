@@ -1,17 +1,18 @@
 import 'dart:convert';
 
-import 'package:fatburger/MODEL/Get_Cart_Model.dart';
+
+import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
 import 'package:fatburger/model/OfferImage.dart';
 import 'package:fatburger/model/foods_response.dart';
 import 'package:http/http.dart';
 
 
 class GettingCARTApi {
-  List<GetCartModel> list;
+  List<GetCartModel2> list;
 
   Client client = Client();
-  String getCartUrl = "http://www.mocky.io/v2/5df1f37d31000074009a2e41";
-  Future<List<GetCartModel>> fetchCARTList() async {
+  String getCartUrl = "http://www.mocky.io/v2/5df759f732000054002dfea4";
+  Future<List<GetCartModel2>> fetchCARTList() async {
     try {
       final response = await client.get(getCartUrl);
      
@@ -23,7 +24,7 @@ class GettingCARTApi {
         print(rest);
 
         list = rest
-            .map<GetCartModel>((json) => GetCartModel.fromJson(json))
+            .map<GetCartModel2>((json) => GetCartModel2.fromJson(json))
             .toList();
 
         return list;

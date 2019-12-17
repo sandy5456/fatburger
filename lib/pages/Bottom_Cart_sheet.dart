@@ -1,6 +1,8 @@
 import 'package:fatburger/BLOCS/Cart_Bloc.dart';
 import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
-import 'package:fatburger/MODEL/Get_Cart_Model.dart';
+
+import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
+import 'package:fatburger/PAGES/Cart_Item_Screen1.dart';
 import 'package:fatburger/PAGES/Dlivery_Option.dart';
 import 'package:fatburger/constants/values.dart';
 
@@ -93,9 +95,9 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
         child: Container(
       color: Colors.white,
       height: MediaQuery.of(context).size.height * 0.65,
-      child: StreamBuilder<List<GetCartModel>>(
+      child: StreamBuilder<List<GetCartModel2>>(
           stream: getCartBloc.getAllCartItems,
-          builder: (context, AsyncSnapshot<List<GetCartModel>> snapshot) {
+          builder: (context, AsyncSnapshot<List<GetCartModel2>> snapshot) {
             // if (!["", null].contains(phoneNumber)) {
             if (snapshot.hasData) {
               return Column(
@@ -106,7 +108,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                       scrollDirection: Axis.vertical,
                       itemCount: snapshot.data.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return CartItemList(
+                        return  CartItemList1(
                           removeItem: _removeProductFromCart,
                           products: snapshot.data[index].products,
                           phoneNumber: phoneNumber,
