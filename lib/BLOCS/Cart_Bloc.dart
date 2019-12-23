@@ -2,6 +2,7 @@ import 'package:fatburger/JSON_DATA/providers/Cart_api.dart';
 import 'package:fatburger/JSON_DATA/repository/repositories.dart';
 import 'package:fatburger/MODEL/Cart_Model.dart';
 import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
+import 'package:fatburger/MODEL/New_model_Get_cart.dart';
 
 import 'package:rxdart/rxdart.dart';
 

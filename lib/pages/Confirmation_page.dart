@@ -1,5 +1,6 @@
 import 'package:fatburger/BLOCS/Cart_Bloc.dart';
 import 'package:fatburger/BLOCS/CheckOut_bloc.dart';
+import 'package:fatburger/BLOCS/Confirm_cart_Bloc.dart';
 import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
 
 import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
@@ -45,7 +46,7 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getCartBloc.fetchAllGetCartItem();
+    confirmationCartBloc.fetchAllConfirmCartItem();
   }
 
   @override
@@ -101,9 +102,9 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
         child: Container(
       color: Colors.white,
       height: MediaQuery.of(context).size.height * 0.04,
-      child: StreamBuilder<List<GetCartModel2>>(
-          stream: getCartBloc.getAllCartItems,
-          builder: (context, AsyncSnapshot<List<GetCartModel2>> snapshot) {
+      child: StreamBuilder<GetCartModel2>(
+          stream: confirmationCartBloc.getAllCartItems,
+          builder: (context, AsyncSnapshot<GetCartModel2> snapshot) {
             // if (!["", null].contains(phoneNumber)) {
             if (snapshot.hasData) {
               return Column(
@@ -112,14 +113,14 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
                       scrollDirection: Axis.vertical,
-                      itemCount: snapshot.data.length,
+                      itemCount: snapshot.data.products.length,
                       itemBuilder: (BuildContext context, int index) {
                         return ConfirmationCartItems(
                           tableNo: widget.tableNo,
                           carNo: widget.carNo,
                           outsideData: widget.outsideData,
                           removeItem: _removeProductFromCart,
-                          products: snapshot.data[index].products,
+                          products: snapshot.data.products,
                           phoneNumber: phoneNumber,
                         );
                       }),

@@ -7,12 +7,12 @@ import 'package:fatburger/model/foods_response.dart';
 import 'package:http/http.dart';
 
 
-class GettingCARTApi {
+class ConFirmCARTApi {
   GetCartModel2 list;
 
   Client client = Client();
   String getCartUrl = "http://142.93.219.45:8080/KyanCafe/kyancafe/viewCart";
-  Future<GetCartModel2> fetchCARTList() async {
+  Future<GetCartModel2> fetchconfinrmCARTList() async {
     try {
       final response = await client.get(getCartUrl);
      
@@ -20,7 +20,7 @@ class GettingCARTApi {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         //final rest = data ;
-        print("CART DATA..");
+        print("View cart CONFIRM CART DATA..");
       
 
         list = GetCartModel2.fromJson(data);

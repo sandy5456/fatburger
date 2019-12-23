@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
 import 'package:fatburger/PAGES/Bottom_Cart_sheet.dart';
+import 'package:fatburger/PAGES/tabBar.dart';
 
 import 'package:fatburger/widgets/Cart_Item_Screen.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -15,7 +17,7 @@ import 'package:fatburger/model/foods_response.dart';
 import 'package:fatburger/model/foods_response.dart' as prefix0;
 import 'package:fatburger/notifier/cart_model.dart';
 import 'package:fatburger/pages/SliderImage.dart';
-import 'package:fatburger/pages/tabBar.dart';
+
 
 import 'package:fatburger/pages/user_profile.dart';
 
@@ -30,7 +32,7 @@ import 'package:flutter/material.dart' as prefix1;
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:shifting_tabbar/shifting_tabbar.dart';
+
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -73,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     propertyBloc.fetchAllCategory();
     offerImageBloc.fetchAllOfferImage();
+     getCartBloc.fetchAllGetCartItem();
   }
   // @override
   // void dispose() {
@@ -85,15 +88,18 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        height: MediaQuery.of(context).size.height * 0.88,
+        color: Colors.white,
+        height: MediaQuery.of(context).size.height * 0.84,
         margin: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
         child: ListView(
+          physics: NeverScrollableScrollPhysics(),
           scrollDirection: Axis.vertical,
           children: <Widget>[
             buildAppBar(),
             offerImageCarasol(context),
             // buildFoodList()
-            buildFoodFilter(),
+            //buildFoodFilter(),
+            Tabbar()
           ],
         ),
         // child: Column(
@@ -158,47 +164,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget buildFoodFilter() {
-    return Container(
-      color: Colors.white,
-      height: MediaQuery.of(context).size.height * 0.65,
-      child: StreamBuilder<List<FoodResponse>>(
-          stream: propertyBloc.allCategory,
-          builder: (context, AsyncSnapshot<List<FoodResponse>> snapshot) {
-            if (snapshot.hasData) {
-              //List<Aminety>aminities=snapshot.data[0].aminety;
-              // aMINITES=snapshot.data[10].aminety;
-              // iMAGES=snapshot.data[0].image;
-              return ListView.builder(
-                shrinkWrap: true,
-                physics: ScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Column(
-                    children: <Widget>[
-                      Tabbar(
-                        catagoryname: snapshot.data[index].catogeryname,
-                        foods: snapshot.data[index].foods,
-                      ),
-                      // Tabbar(
-                      //   catagoryname: snapshot.data[index].catogeryname,
-                      //   foods: snapshot.data[index].foods,
-                      // ),
-                    ],
-                  );
-                },
-              );
-            } else {
-              return Center(
-                child: SpinKitWave(
-                  color: Colors.black45,
-                  size: 25.0,
-                ),
-              );
-            }
-          }),
-    );
+
+    
     // return Container(
     //   height: 50,
     //   //color: Colors.red,
@@ -253,7 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //     ),
   //   );
   // }
-}
+
 
 Widget offerImageCarasol(context) {
   return Container(

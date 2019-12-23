@@ -1,5 +1,7 @@
 import 'package:fatburger/BLOCS/Cart_Bloc.dart';
 import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
+import 'package:fatburger/FOODMENU/breakfast/breakfat_itemCard.dart';
+import 'package:fatburger/FOODMENU/breakfast/salad_card.dart';
 import 'package:fatburger/FOODMENU/soup_items_card.dart';
 import 'package:fatburger/PAGES/Cart_Item_Screen1.dart';
 
@@ -19,15 +21,15 @@ import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:toast/toast.dart';
 
-import 'cold_drinks_menu.dart';
 
-class Soups extends StatefulWidget {
+
+class Breakfast extends StatefulWidget {
   var productId;
   @override
-  _SoupsState createState() => _SoupsState();
+  _BreakfastState createState() => _BreakfastState();
 }
 
-class _SoupsState extends State<Soups> {
+class _BreakfastState extends State<Breakfast> {
     void initState() {
     // TODO: implement initState
     super.initState();
@@ -54,7 +56,7 @@ class _SoupsState extends State<Soups> {
                     scrollDirection: Axis.horizontal,
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return SoupsItemCard(
+                      return BreakFastItemCard(
                         cId: snapshot.data[index].cId,
                          name: snapshot.data[index].catogeryname,
                         foods: snapshot.data[index].foods,
@@ -87,7 +89,7 @@ class _SoupsState extends State<Soups> {
                     scrollDirection: Axis.horizontal,
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return ColdDrinksMenu(
+                      return SaladCard(
                         cId: snapshot.data[index].cId,
                          name: snapshot.data[index].catogeryname,
                         foods: snapshot.data[index].foods,

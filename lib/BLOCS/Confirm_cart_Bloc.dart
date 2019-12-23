@@ -8,23 +8,16 @@ import 'package:fatburger/model/foods_response.dart';
 
 import 'package:rxdart/rxdart.dart';
 
-class GetCartBloc {
+class ConfirmationCartBloc {
   final _repository = Repository();
   final _getCartFetcher = PublishSubject<GetCartModel2>();
 
   Observable<GetCartModel2> get getAllCartItems => _getCartFetcher.stream;
 
-  fetchAllGetCartItem() async {
-    GetCartModel2 categoryModel = await _repository.fetchAllGetCartItems();
+  fetchAllConfirmCartItem() async {
+    GetCartModel2 categoryModel = await _repository.fetchAllConfirmCartItem();
     _getCartFetcher.sink.add(categoryModel);
-  }
-additemsToCart(var productId,var quantity)  {
-    _repository.addItemsToCart(productId, quantity);
-  }
-  dispose() async {
-    await _getCartFetcher.drain();
-    _getCartFetcher.close();
   }
 }
 
-final getCartBloc = GetCartBloc();
+final confirmationCartBloc = ConfirmationCartBloc();

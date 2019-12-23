@@ -117,7 +117,7 @@ class _NumberCountDemoState extends State<NumberCountDemo> {
 
   addingtoCart() async {
     await getCartBloc.additemsToCart(
-        "${widget.productId}", "$count");
+        widget.productId,count);
   }
 
   removingfromCart() async {

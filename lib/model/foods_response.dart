@@ -1,10 +1,12 @@
 class FoodResponse {
   final String catogeryname;
   List<Food>foods;
+  final int cId;
 
   FoodResponse({
     this.catogeryname,
-    this.foods
+    this.foods,
+    this.cId
   });
 
   factory FoodResponse.fromJson(Map<String, dynamic> json) {
@@ -14,12 +16,14 @@ class FoodResponse {
           .map((i) => Food.fromJson(i))
           .toList(),
       catogeryname: json['categoryName'],
+      cId: json['categoryId'],
     );
   }
 }
 //FoodResponse Food
 class Food{
 String images;
+int catogeryid;
   int id;
   String name;
   String description;
@@ -31,6 +35,7 @@ String images;
   int v;
 
   Food({
+    this.catogeryid,
  this.images,
     this.id,
     this.name,
@@ -44,10 +49,11 @@ String images;
   });
   factory Food.fromJson(Map<String, dynamic> json){
     return Food(
-      id: json['id'],
+      id: json['productId'],
       name: json['productName'],
       images: json['imageurl'],
-      price: json['price']
+      price: json['price'],
+      catogeryid: json['categoryId']
 
       );
 }

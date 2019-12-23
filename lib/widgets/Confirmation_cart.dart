@@ -93,7 +93,7 @@ class ConfirmationCartItems extends StatelessWidget {
                                             Container(
                                               child: Flexible(
                                                 child: Text(
-                                                  "${products[index].productInfo.name}",
+                                                  "${products[index].quantity}",
                                                   overflow: TextOverflow.visible,
                                                   style: TextStyle(
                                                       fontWeight: FontWeight.bold,

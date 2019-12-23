@@ -29,7 +29,12 @@ class GetCartModel2 {
 //          .toList(),
     );
   }
- 
+ Map toMap(){
+    var map=new Map<String,dynamic>();
+    map['cartItem']=products;
+    return Map();
+
+  }
 }
 
 class CartProducts2 {
