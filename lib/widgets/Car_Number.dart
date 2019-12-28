@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pin_input_text_field/pin_input_text_field.dart';
-import 'package:pinput/pin_put/pin_put.dart';
+
 
 void main() => runApp(PinPutTest());
 

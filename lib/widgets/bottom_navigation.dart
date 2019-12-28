@@ -1,10 +1,10 @@
+import 'package:fatburger/PAGES/fav_page.dart';
 import 'package:fatburger/pages/HomeScreen.dart';
 import 'package:fatburger/pages/offer_screen.dart';
 import 'package:fatburger/widgets/Car_Number.dart';
 
 import 'package:fatburger/widgets/drawer_screen.dart';
-import 'package:fatburger/widgets/static_food_menu/fav_page.dart';
-import 'package:fatburger/widgets/static_food_menu/offers_screen.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

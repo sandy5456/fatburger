@@ -1,49 +1,43 @@
-import 'package:fatburger/BLOCS/Cart_Bloc.dart';
-import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
+
 import 'package:fatburger/BLOCS/State_Managment.dart';
 import 'package:flutter/material.dart';
 
-class PluseAndMinus extends StatelessWidget {
-  int productId;
-  PluseAndMinus({
-    this.productId,
-  });
+// class QuaintityIncreament extends StatelessWidget {
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return new MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: "Number Count",
+//       theme: new ThemeData(primarySwatch: Colors.blueGrey),
+//       home: new NumberCountDemo(
+        
+//       ),
+//     );
+//   }
+// }
+
+class QuaintityIncreament extends StatefulWidget {
+
+ 
   @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Number Count",
-      theme: new ThemeData(primarySwatch: Colors.blueGrey),
-      home: new NumberCountDemo(
-        productId: productId,
-      ),
-    );
-  }
+  _QuaintityIncreamentState createState() => _QuaintityIncreamentState();
 }
 
-class NumberCountDemo extends StatefulWidget {
-  int productId;
-  NumberCountDemo({
-    this.productId,
-  });
-  @override
-  _NumberCountDemoState createState() => _NumberCountDemoState();
-}
-
-class _NumberCountDemoState extends State<NumberCountDemo> {
+class _QuaintityIncreamentState extends State<QuaintityIncreament> {
   int count = 0;
   void add() async {
     setState(() {
       count++;
     });
-    //  await stateManagmentData.setProductValue(widget.productId);
+      //await stateManagmentData.setQuantityValue(count);
   }
 
   void minus() async {
     setState(() {
       if (count != 0) count--;
     });
-    //await dataofAddingProperty.setbathRooomCount(bathroom);
+    //await stateManagmentData.setQuantityValue(count);
   }
 
   @override
@@ -74,7 +68,7 @@ class _NumberCountDemoState extends State<NumberCountDemo> {
                 onPressed: () {
                   setState(() {
                     if (count != 0) count--;
-                    removingfromCart();
+                  
                   });
                 },
                 child: new Icon(
@@ -98,8 +92,9 @@ class _NumberCountDemoState extends State<NumberCountDemo> {
                 onPressed: () {
                   setState(() {
                     count++;
+                    stateManagmentData.setQuantityValue(count);
 
-                    addingtoCart();
+                 
                   });
                 },
                 child: new Icon(
@@ -115,12 +110,5 @@ class _NumberCountDemoState extends State<NumberCountDemo> {
     );
   }
 
-  addingtoCart() async {
-    await getCartBloc.additemsToCart(
-        widget.productId,count);
-  }
-
-  removingfromCart() async {
-    await cartBloc.removeProductFromCart("${widget.productId}", "50372282");
-  }
+  
 }

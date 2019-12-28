@@ -1,11 +1,10 @@
 import 'package:fatburger/BLOCS/propertybloc.dart';
 import 'package:fatburger/FOODMENU/breakfast/breakfast.dart';
+import 'package:fatburger/FOODMENU/burger/burger.dart';
 import 'package:fatburger/FOODMENU/ice_cream/icecream.dart';
 import 'package:fatburger/FOODMENU/soups.dart';
 import 'package:fatburger/model/foods_response.dart';
-import 'package:fatburger/widgets/static_food_menu/food1.dart';
-import 'package:fatburger/widgets/static_food_menu/hot_drinks.dart';
-import 'package:fatburger/widgets/static_food_menu/iceCreams1.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -114,7 +113,7 @@ class _TabbarState extends State<Tabbar> with TickerProviderStateMixin {
                   Soups(),
                   IceCream(),
                   Breakfast(),
-                  Food1(),
+                  Burger(),
                 ],
               ),
             )

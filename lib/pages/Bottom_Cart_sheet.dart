@@ -1,5 +1,6 @@
 import 'package:fatburger/BLOCS/Cart_Bloc.dart';
 import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
+import 'package:fatburger/BLOCS/State_Managment.dart';
 
 import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
 
@@ -50,7 +51,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
 
   @override
   void dispose() {
-    cartBloc.dispose();
+    getCartBloc.dispose();
     super.dispose();
   }
 
@@ -101,9 +102,12 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
           builder: (context, AsyncSnapshot<GetCartModel2> snapshot) {
             // if (!["", null].contains(phoneNumber)) {
             if (snapshot.hasData) {
+              print(snapshot.data.products.length);
+               stateManagmentData.setCartItemValue(snapshot.data.products.length);
               return Column(
                 children: <Widget>[
                   ListView.builder(
+                    
                       shrinkWrap: true,
                       physics: ScrollPhysics(),
                       scrollDirection: Axis.vertical,
@@ -114,7 +118,8 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
                           products: snapshot.data.products,
                           phoneNumber: phoneNumber,
                         );
-                      }),
+                      }
+                      ),
 
                   SizedBox(
                     height: 5,
@@ -178,7 +183,7 @@ class _CartBottomSheetState extends State<CartBottomSheet> {
   }
 
   _removeProductFromCart(String productId) async {
-    await cartBloc.removeProductFromCart(productId, phoneNumber);
+    await getCartBloc.removeToCart(productId, phoneNumber);
   }
 
 

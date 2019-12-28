@@ -12,20 +12,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:toast/toast.dart';
 
-class BreakFastItemCard extends StatefulWidget {
+class BgItemCard extends StatefulWidget {
   List<Food> foods;
   int cId;
   String name;
 
   String phoneNumber = "50372282";
   
-  BreakFastItemCard({this.foods, this.name,this.cId});
+  BgItemCard({this.foods, this.name,this.cId});
   @override
-  _BreakFastItemCardState createState() => _BreakFastItemCardState();
+  _BgItemCardState createState() => _BgItemCardState();
 }
 
-class _BreakFastItemCardState extends State<BreakFastItemCard> {
- bool isFavorite = true;
+class _BgItemCardState extends State<BgItemCard> {
+   bool isFavorite = true;
   @override
 Widget build(BuildContext context) {
     return ListView.builder(
@@ -34,7 +34,7 @@ Widget build(BuildContext context) {
         scrollDirection: Axis.horizontal,
         itemCount: widget.foods.length,
         itemBuilder: (BuildContext context, int index) {
-           if (widget.foods[index].catogeryid==55) {
+           if (widget.foods[index].catogeryid==76) {
             
           //81
                 return Container(
@@ -212,11 +212,11 @@ width: 0.01,
       builder: (context) => CartItemList1(),
     );
   }
-addingtoCart(String pId,String quantity) async {
+
+ addingtoCart(String pId,String quantity) async {
     await getCartBloc.addToCart(pId,quantity );
   }
 
- 
 
   alertBox(BuildContext context, int index) {
     return showDialog(
@@ -284,7 +284,7 @@ addingtoCart(String pId,String quantity) async {
                                                       color: Colors.yellow),
                                                   onRatingUpdate: (rating) {},
                                                 ),
-                                                   ButtonTheme(
+                                                ButtonTheme(
                           buttonColor: Colors.white,
                           minWidth: 10.0,
                           height: 20.0,
@@ -393,7 +393,7 @@ addingtoCart(String pId,String quantity) async {
               ));
         });
   }
-  addTofav(var productId, var phone) async {
+    addTofav(var productId, var phone) async {
     await favPostBloc.addproductToFav(productId, phone);
   }
 }

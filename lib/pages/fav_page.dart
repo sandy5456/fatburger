@@ -1,7 +1,9 @@
 import 'package:fatburger/BLOCS/Fav_Post_Bloc.dart';
 import 'package:fatburger/BLOCS/Get_fav_Bloc.dart';
 import 'package:fatburger/MODEL/get_fav_Model.dart';
-import 'package:fatburger/widgets/static_food_menu/increment_and_dicriment.dart';
+import 'package:fatburger/widgets/QuantityIncreament.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -303,7 +305,7 @@ class _FavScreenState extends State<FavScreen> {
                                                   .size
                                                   .height *
                                               0.04,
-                                          child: PluseAndMinus()),
+                                          child: QuaintityIncreament()),
                                     ),
                                     // Positioned(
                                     //   top: size.height * 0.015,

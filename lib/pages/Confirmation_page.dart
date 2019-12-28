@@ -2,6 +2,7 @@ import 'package:fatburger/BLOCS/Cart_Bloc.dart';
 import 'package:fatburger/BLOCS/CheckOut_bloc.dart';
 import 'package:fatburger/BLOCS/Confirm_cart_Bloc.dart';
 import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
+import 'package:fatburger/BLOCS/State_Managment.dart';
 
 import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
 import 'package:fatburger/MODEL/checkOut_model.dart';
@@ -235,32 +236,38 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
             color: Colors.white,
             textColor: Colors.black,
             onPressed: () async {
-              checkOutModel = new CheckOutModel(
-                tableNo: widget.tableNo,
-                carNo: widget.carNo,
-                outsideData: widget.outsideData,
-                paymentOption: widget.paymentOption,
+              checkoutData(
+                "50372282",
+                stateManagmentData.dyning,
+                stateManagmentData.options,
               );
-              cheakOutBloc.addPostData(checkOutModel);
-                 showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              backgroundColor: Colors.black,
-                              title: new Text("Orderd Placed succefully",style: TextStyle(color:Colors.white,)),
-                              //content: new Text("Body"),
-                              actions: <Widget>[
-                                new FlatButton(
-                                  child: new Text("Go to home",style: TextStyle(color:Colors.green,)),
-                                  onPressed: () {
-                                     Navigator.push(
-                           context,
-                           MaterialPageRoute(builder: (context) =>YoutubeMain()));
-                                  },
-                                )
-                              ],
-                            );
-                          });
+
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      backgroundColor: Colors.black,
+                      title: new Text("Orderd Placed succefully",
+                          style: TextStyle(
+                            color: Colors.white,
+                          )),
+                      //content: new Text("Body"),
+                      actions: <Widget>[
+                        new FlatButton(
+                          child: new Text("Go to home",
+                              style: TextStyle(
+                                color: Colors.green,
+                              )),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => YoutubeMain()));
+                          },
+                        )
+                      ],
+                    );
+                  });
             },
             child: Text(
               "CONFIRM",
@@ -270,7 +277,11 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
     );
   }
 
+  checkoutData(String phone, String dyningnumber, String dyningplace) async {
+    await cheakOutBloc.addPostData(phone, dyningnumber, dyningplace);
+  }
+
   _removeProductFromCart(String productId) async {
-    await cartBloc.removeProductFromCart(productId, phoneNumber);
+    await getCartBloc.removeToCart(productId, phoneNumber);
   }
 }

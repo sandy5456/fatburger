@@ -1,7 +1,10 @@
 import 'package:fatburger/model/OfferImage.dart';
 import 'package:fatburger/model/Offer_product_model.dart';
 import 'package:fatburger/model/order_response.dart';
-import 'package:fatburger/widgets/static_food_menu/increment_and_dicriment.dart';
+import 'package:fatburger/widgets/QuantityIncreament.dart';
+
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -75,7 +78,7 @@ class _OfferProductListCardState extends State<OfferProductListCard> {
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.05,
-                                      child: PluseAndMinus(),
+                                      child: QuaintityIncreament(),
                                     ),
                                   ],
                                 )
@@ -287,4 +290,5 @@ class _OfferProductListCardState extends State<OfferProductListCard> {
           );
         });
   }
+  
 }

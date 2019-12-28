@@ -1,12 +1,15 @@
 class StateManagmentData{
+  String options;
+  String dyning;
   String carNumber;
-  String quantity;
+  int quantity;
   String tableNumber;
   String outsidedata;
+  var cartItemLenght;
   setCarNumberValue(String value) {
     carNumber= value;
   }
-  setQuantityValue(String value){
+  setQuantityValue(int value){
     quantity=value;
   }
   setTablenumberValue(String value){
@@ -15,6 +18,14 @@ class StateManagmentData{
    setoutsideValue(String value){
     outsidedata=value;
   }
-
+setoptionValue(String value){
+  options=value;
+}
+setDyningValue(String value){
+  dyning=value;
+}
+setCartItemValue(var value){
+  cartItemLenght=value;
+}
 }
 final stateManagmentData = StateManagmentData();

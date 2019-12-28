@@ -3,7 +3,7 @@ import 'package:fatburger/MODEL/Cart_Model.dart';
 
 import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
 import 'package:fatburger/constants/values.dart';
-import 'package:fatburger/widgets/static_food_menu/increment_and_dicriment.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 

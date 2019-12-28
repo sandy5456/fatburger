@@ -2,7 +2,8 @@ import 'package:fatburger/BLOCS/Cart_Bloc.dart';
 import 'package:fatburger/MODEL/Cart_Model.dart';
 
 import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
-import 'package:fatburger/widgets/static_food_menu/increment_and_dicriment.dart';
+import 'package:fatburger/widgets/QuantityIncreament.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
@@ -38,7 +39,7 @@ class CartItemList1 extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.37,
+      height: size.height * 0.30,
       child: ListView.builder(
           shrinkWrap: true,
           physics: ScrollPhysics(),
@@ -66,7 +67,7 @@ class CartItemList1 extends StatelessWidget {
                                 image: DecorationImage(
                                     fit: BoxFit.fitHeight,
                                     image: NetworkImage(
-                                        "http://142.93.219.45:8080/filemanager/"+products[index].productInfo.image)),
+                                        "http://142.93.219.45/upload/"+products[index].productInfo.image)),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8.0)),
                               ),
@@ -200,8 +201,8 @@ class CartItemList1 extends StatelessWidget {
                           child: Container(
                               width: MediaQuery.of(context).size.width * 0.22,
                               height: MediaQuery.of(context).size.height * 0.03,
-                              child: PluseAndMinus(
-                                productId: 1
+                              child: QuaintityIncreament(
+                            
                                 // products[index]
                                 //     .productInfo
                                 //     .productId,
@@ -217,9 +218,7 @@ class CartItemList1 extends StatelessWidget {
                                 onPressed: () async => {
                                   await removeItem(
                                     "${products[index].productInfo.productId}",
-                                  ).then((_) {
-                                    cartBloc.fetchCartItems(phoneNumber);
-                                  }),
+                                  )
                                 },
                                 icon: Icon(
                                   Icons.close,

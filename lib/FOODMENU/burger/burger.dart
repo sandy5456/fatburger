@@ -1,5 +1,7 @@
 import 'package:fatburger/BLOCS/Cart_Bloc.dart';
 import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
+import 'package:fatburger/FOODMENU/burger/burger2.dart';
+import 'package:fatburger/FOODMENU/burger/burgerItemCard.dart';
 import 'package:fatburger/FOODMENU/ice_cream/ic_ItemCart.dart';
 import 'package:fatburger/FOODMENU/ice_cream/soft_drinks.dart';
 import 'package:fatburger/FOODMENU/soup_items_card.dart';
@@ -23,13 +25,13 @@ import 'package:toast/toast.dart';
 
 
 
-class IceCream extends StatefulWidget {
+class Burger extends StatefulWidget {
   var productId;
   @override
-  _IceCreamState createState() => _IceCreamState();
+  _BurgerState createState() => _BurgerState();
 }
 
-class _IceCreamState extends State<IceCream> {
+class _BurgerState extends State<Burger> {
     void initState() {
     // TODO: implement initState
     super.initState();
@@ -56,7 +58,7 @@ class _IceCreamState extends State<IceCream> {
                     scrollDirection: Axis.horizontal,
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return IcItemCard(
+                      return BgItemCard(
                         cId: snapshot.data[index].cId,
                          name: snapshot.data[index].catogeryname,
                         foods: snapshot.data[index].foods,
@@ -89,7 +91,7 @@ class _IceCreamState extends State<IceCream> {
                     scrollDirection: Axis.horizontal,
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return SoftDrinksCard(
+                      return Bg2ItemCard(
                         cId: snapshot.data[index].cId,
                          name: snapshot.data[index].catogeryname,
                         foods: snapshot.data[index].foods,

@@ -13,11 +13,7 @@ class FavPostBloc {
 
   Observable<GetCartModel2> get allCartItems => _cartFetcher.stream;
 
-  fetchCartItems(String phoneNnumber) async {
-    GetCartModel2 cartModel =
-        await _repository.fetchAllCartItems(phoneNnumber);
-    _cartFetcher.sink.add(cartModel);
-  }
+ 
 
   addproductToFav(var productId, var phone)  {
     _repository.addProductToFav(productId, phone);

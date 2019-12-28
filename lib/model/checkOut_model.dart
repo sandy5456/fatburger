@@ -1,24 +1,24 @@
 class CheckOutModel {
-  String tableNo;
-  String carNo;
-  String outsideData;
-  String paymentOption;
+  String phone;
+  String dyningNumber;
+  String dyningplace;
+  //String paymentOption;
 
   CheckOutModel(
-      {this.carNo, this.outsideData, this.tableNo, this.paymentOption});
+      {this.phone, this.dyningNumber, this.dyningplace});
   factory CheckOutModel.fromJson(Map<String, dynamic> json) {
     return CheckOutModel(
-      tableNo: json['tableno'],
-      carNo: json['carno'],
-      outsideData: json['outsidedata'],
-      paymentOption: json['pamentoption'],
+      phone: json['phone'],
+      dyningNumber: json['mode'],
+      dyningplace: json['pm'],
+      //paymentOption: json['pamentoption'],
     );
   }
   Map toMap() {
     var map = new Map<String, dynamic>();
-    map['tableno']=tableNo;
-    map['carno']=carNo;
-    map['outsidedata']=outsideData;
-    map['payment']=paymentOption;
+    map['phone']=phone;
+    map['mode']=dyningNumber;
+    map['pm']=dyningplace;
+    //map['payment']=paymentOption;
   }
 }

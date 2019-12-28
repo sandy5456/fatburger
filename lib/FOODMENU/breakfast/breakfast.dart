@@ -13,7 +13,7 @@ import 'package:fatburger/model/foods_response.dart';
 import 'package:fatburger/notifier/cart_model.dart';
 import 'package:fatburger/widgets/Cart_Item_Screen.dart';
 import 'package:fatburger/widgets/cart_bottom_sheet.dart';
-import 'package:fatburger/widgets/static_food_menu/increment_and_dicriment.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';

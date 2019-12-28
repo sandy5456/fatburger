@@ -1,12 +1,15 @@
 
+import 'package:fatburger/BLOCS/Fav_Post_Bloc.dart';
 import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
+import 'package:fatburger/BLOCS/State_Managment.dart';
 import 'package:fatburger/PAGES/Cart_Item_Screen1.dart';
 import 'package:fatburger/constants/values.dart';
 import 'package:fatburger/model/foods_response.dart';
-import 'package:fatburger/widgets/static_food_menu/increment_and_dicriment.dart';
+import 'package:fatburger/widgets/QuantityIncreament.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:toast/toast.dart';
 
 class SoftDrinksCard extends StatefulWidget {
   List<Food> foods;
@@ -21,6 +24,7 @@ class SoftDrinksCard extends StatefulWidget {
 }
 
 class _SoftDrinksCardState extends State<SoftDrinksCard> {
+  bool isFavorite = true;
   @override
 Widget build(BuildContext context) {
     return ListView.builder(
@@ -59,7 +63,7 @@ Widget build(BuildContext context) {
                                           decoration: BoxDecoration(
                                             image: new DecorationImage(
                                               image: new NetworkImage(
-                                                  "http://142.93.219.45:8080/filemanager/" +
+                                                  "http://142.93.219.45/upload/" +
                                                       widget.foods[index]
                                                           .images), //
                                               fit: BoxFit.cover,
@@ -207,6 +211,9 @@ width: 0.01,
       builder: (context) => CartItemList1(),
     );
   }
+addingtoCart(String pId,String quantity) async {
+    await getCartBloc.addToCart(pId,quantity );
+  }
 
  
 
@@ -227,7 +234,7 @@ width: 0.01,
                         borderRadius: BorderRadius.all(Radius.circular(0.0)),
                         image: new DecorationImage(
                           image: new NetworkImage(
-                              "http://142.93.219.45:8080/filemanager/"+widget.foods[index].images), //Image
+                              "http://142.93.219.45/upload/"+widget.foods[index].images), //Image
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -260,20 +267,46 @@ width: 0.01,
                     ),
                       Row(
                         children: <Widget>[
-                          RatingBar(
-                                              initialRating: 5.0,
-                                              direction: Axis.horizontal,
-                                              itemCount: 5,
-                                              itemSize: 14,
-                                              unratedColor: Colors.white,
-                                              itemPadding:
-                                                  EdgeInsets.only(right: 2.0),
-                                              ignoreGestures: true,
-                                              itemBuilder: (context, index) => Icon(
-                                                  Icons.star,
-                                                  color: Colors.yellow),
-                                              onRatingUpdate: (rating) {},
-                                            ),
+                          Row(
+                            children: <Widget>[
+                              RatingBar(
+                                                  initialRating: 5.0,
+                                                  direction: Axis.horizontal,
+                                                  itemCount: 5,
+                                                  itemSize: 14,
+                                                  unratedColor: Colors.white,
+                                                  itemPadding:
+                                                      EdgeInsets.only(right: 2.0),
+                                                  ignoreGestures: true,
+                                                  itemBuilder: (context, index) => Icon(
+                                                      Icons.star,
+                                                      color: Colors.yellow),
+                                                  onRatingUpdate: (rating) {},
+                                                ),
+                                                   ButtonTheme(
+                          buttonColor: Colors.white,
+                          minWidth: 10.0,
+                          height: 20.0,
+                          child: InkWell(
+                              onTap: () {
+                                isFavorite = !isFavorite;
+                                setState(() {
+                                  if (isFavorite==false){
+                                    addTofav(widget.foods[index].id, 50372282);
+                                    Toast.show("added to favorite", context, duration: Toast.LENGTH_SHORT, gravity:  Toast.CENTER);
+                                  }
+
+                                });
+                              },
+                              child: isFavorite
+                                  ? Icon(
+                                      Icons.favorite_border,
+                                      color: Colors.red,
+                                    )
+                                  : Icon(Icons.favorite,color: Colors.red,)),
+                        ),
+                            ],
+                          ),
                         ],
                       ),
                     SizedBox(
@@ -328,21 +361,25 @@ width: 0.01,
                             color: Colors.transparent,
                             width: MediaQuery.of(context).size.width * 0.30,
                             height: MediaQuery.of(context).size.height * 0.04,
-                            child: PluseAndMinus()),
+                            child: QuaintityIncreament()),
                       ],
                     ),
-                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.0132,
-                        ),
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.0130,
+                    ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.08,
+                        height: MediaQuery.of(context).size.height * 0.0685,
                         width: double.infinity, // match_parent
                         child: FlatButton(
                           color: Colors.black,
                           textColor: Colors.white,
-                          onPressed: () {
+                          onPressed: (){
                             setState(() {
-                              //addingtoCart();
+                             setState(() {
+                              addingtoCart("${widget.foods[index].id}","${stateManagmentData.quantity}");
+                              print(widget.foods[index].id);
+                              print(stateManagmentData.quantity);
+                             });
                             });
                           },
                           child: Text(
@@ -354,5 +391,8 @@ width: 0.01,
                 ),
               ));
         });
+  }
+  addTofav(var productId, var phone) async {
+    await favPostBloc.addproductToFav(productId, phone);
   }
 }

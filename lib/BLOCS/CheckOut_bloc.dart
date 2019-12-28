@@ -8,8 +8,8 @@ import 'package:fatburger/MODEL/checkOut_model.dart';
 class CheakOutBloc {
   final _repository = Repository();
 
-  addPostData(CheckOutModel checkOutModel) {
-    _repository.addPostData(checkOutModel);
+  addPostData(String phone,String dyningnumber,String dyningplace) {
+    _repository.addPostData(phone,dyningnumber,dyningplace);
   }
 }
 

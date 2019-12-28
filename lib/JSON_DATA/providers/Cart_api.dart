@@ -42,21 +42,21 @@ class CartApiProvider {
     }
   }
 
-  Future addToCart(productId, phone, quantity) async {
-    final response = await client.post(
-      itemToCartUrl,
-      body: {
-        'productCode': productId,
-        'quantity': quantity,
-       // 'phone': phone,
-      },
-    );
-    if (response.statusCode == 200) {
-      return response;
-    } else {
-      throw (Exception("Failed"));
-    }
-  }
+  // Future addToCart(productId, phone, quantity) async {
+  //   final response = await client.post(
+  //     itemToCartUrl,
+  //     body: {
+  //       'productCode': productId,
+  //       'quantity': quantity,
+  //      // 'phone': phone,
+  //     },
+  //   );
+  //   if (response.statusCode == 200) {
+  //     return response;
+  //   } else {
+  //     throw (Exception("Failed"));
+  //   }
+  // }
 
   Future removeFromCart(productId, phone) async {
     final response = await client.post(

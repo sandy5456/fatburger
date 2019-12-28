@@ -1,3 +1,7 @@
+import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
+import 'package:fatburger/BLOCS/Get_fav_Bloc.dart';
+import 'package:fatburger/BLOCS/State_Managment.dart';
+import 'package:fatburger/MODEL/get_fav_Model.dart';
 import 'package:fatburger/blocs/Offer_product_bloc.dart';
 import 'package:fatburger/blocs/offer_images_bolc.dart';
 import 'package:fatburger/model/Offer_product_model.dart';
@@ -5,6 +9,7 @@ import 'package:fatburger/pages/HomeScreen.dart';
 import 'package:fatburger/widgets/Offer_List_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:toast/toast.dart';
 
 class OffferScreen extends StatefulWidget {
   @override
@@ -17,13 +22,13 @@ class _OffferScreenState extends State<OffferScreen> {
     super.initState();
     offerImageBloc.fetchAllOfferImage();
     offerproductBloc.fetchAllOfferProduct();
+    getFavBloc.fetchAllfavList();
   }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return 
-    Scaffold(
+    return Scaffold(
       appBar: AppBar(
         // leading: IconButton(
         //   icon: Icon(
@@ -72,35 +77,181 @@ class _OffferScreenState extends State<OffferScreen> {
   }
 
   Widget offerProducts() {
+    var size = MediaQuery.of(context).size;
     return Container(
       color: Colors.white,
       height: MediaQuery.of(context).size.height * 10,
-      child: StreamBuilder<List<OfferProductModel>>(
-          stream: offerproductBloc.allofferProducts,
-          builder: (context, AsyncSnapshot<List<OfferProductModel>> snapshot) {
+      child: StreamBuilder<List<GetFavModel>>(
+          stream: getFavBloc.allfav,
+          builder: (context, AsyncSnapshot<List<GetFavModel>> snapshot) {
             if (snapshot.hasData) {
               //List<Aminety>aminities=snapshot.data[0].aminety;
               // aMINITES=snapshot.data[10].aminety;
               // iMAGES=snapshot.data[0].image;
               return ListView.builder(
-                shrinkWrap: true,
-                physics: ScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Column(
-                    children: <Widget>[
-                      OfferProductListCard(
-                        products: snapshot.data[index].products,
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      height: size.height * 0.19,
+                      width: size.width * 1,
+                      padding: EdgeInsetsDirectional.only(
+                          start: size.width * 0.01, end: size.width * 0.01),
+                      child: Stack(
+                        children: <Widget>[
+                          Card(
+                            child: Row(
+                              children: <Widget>[
+                                Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fitHeight,
+                                        image: NetworkImage(
+                                            "http://142.93.219.45/upload/" +
+                                                snapshot.data[index].image)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8.0)),
+                                  ),
+                                  padding: EdgeInsetsDirectional.only(
+                                      start: size.width * 0.05),
+                                  height: size.height * 0.17,
+                                  width: size.width * 0.39,
+                                ),
+                                Container(
+                                  width: size.width * 0.4,
+                                  padding: EdgeInsets.only(
+                                      top: size.height * 0.02,
+                                      left: size.width * 0.03),
+                                  child: Column(
+                                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Container(
+                                        child: Flexible(
+                                          child: Text(
+                                            snapshot.data[index].productname,
+                                            overflow: TextOverflow.visible,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: size.width * 0.035),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: size.height * 0.02,
+                                      ),
+                                      Container(
+                                        child: Text(
+                                          "best selling",
+                                          style: TextStyle(
+                                              fontSize: size.width * 0.032,
+                                              color: Colors.black26),
+                                        ),
+                                      ),
+
+                                      ///FAV ICON I HERE
+                                      ButtonTheme(
+                                        buttonColor: Colors.white,
+                                        minWidth: 10.0,
+                                        height: 20.0,
+                                        child: RaisedButton(
+                                          onPressed: () {
+                                            addingtoCart(
+                                                "${snapshot.data[index].id}",
+                                                "1");
+                                            print(snapshot.data[index].id);
+                                            print(1);
+                                              Toast.show("added to cart", context, duration: Toast.LENGTH_SHORT, gravity:  Toast.CENTER);
+                                          },
+                                          child: Text(
+                                            "Add",
+                                            style:
+                                                TextStyle(color: Colors.green),
+                                          ),
+                                        ),
+                                      ),
+
+                                      SizedBox(
+                                        height: size.height * 0.01,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: size.width * 0.02,
+                                ),
+                              ],
+                            ),
+                            elevation: 3.0,
+                          ),
+                          Positioned(
+                            top: size.height * 0.020,
+                            right: size.width * 0.05,
+                            child: Container(
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.yellow,
+                                  ),
+                                  Text(
+                                    "4.5",
+                                    style:
+                                        TextStyle(fontSize: size.width * 0.032),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: size.height * 0.055,
+                            right: size.width * 0.04,
+                            child: Container(
+                                child: RichText(
+                              text: TextSpan(
+                                style: DefaultTextStyle.of(context).style,
+                                children: <TextSpan>[
+                                  TextSpan(text: 'QAR'),
+                                  TextSpan(
+                                      text: "${snapshot.data[index].price}",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.red,
+                                          fontSize: 18)),
+                                ],
+                              ),
+                            )),
+                          ),
+                          Positioned(
+                            bottom: size.height * 0.018,
+                            left: size.width * 0.41,
+                            child: Container(
+                                child: RichText(
+                              text: TextSpan(
+                                style: DefaultTextStyle.of(context).style,
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: "${snapshot.data[index].price}%",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.red,
+                                          fontSize: 22)),
+                                  TextSpan(
+                                      text: 'OFF',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.black,
+                                          fontSize: 15)),
+                                ],
+                              ),
+                            )),
+                          ),
+                        ],
                       ),
-                      // Tabbar(
-                      //   catagoryname: snapshot.data[index].catogeryname,
-                      //   foods: snapshot.data[index].foods,
-                      // ),
-                    ],
-                  );
-                },
-              );
+                    );
+                  });
             } else {
               return Center(
                 child: SpinKitWave(
@@ -111,28 +262,9 @@ class _OffferScreenState extends State<OffferScreen> {
             }
           }),
     );
-    // return Container(
-    //   height: 50,
-    //   //color: Colors.red,
-    //   child: ListView(
-    //     scrollDirection: Axis.horizontal,
-    //     physics: BouncingScrollPhysics(),
-    //     children: List.generate(FoodTypes.values.length, (index) {
-    //       return Padding(
-    //         padding: const EdgeInsets.all(8.0),
-    //         child: ChoiceChip(
-    //           selectedColor: mainColor,
-    //           labelStyle: TextStyle(color: value == index ? Colors.white : Colors.black),
-    //           label: Text(FoodTypes.values[index].toString().split('.').last),
-    //           selected: value == index,
-    //           onSelected: (selected) {
-    //             setState(() {
-    //               value = index;
-    //             });
-    //           },
-    //         ),
-    //       );
-    //     }),
-    //   ),
+  }
+
+  addingtoCart(String pId, String quantity) async {
+    await getCartBloc.addToCart(pId, quantity);
   }
 }

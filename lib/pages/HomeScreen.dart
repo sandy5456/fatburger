@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
+import 'package:fatburger/BLOCS/State_Managment.dart';
 import 'package:fatburger/PAGES/Bottom_Cart_sheet.dart';
 import 'package:fatburger/PAGES/tabBar.dart';
 
@@ -23,10 +24,7 @@ import 'package:fatburger/pages/user_profile.dart';
 
 import 'package:fatburger/widgets/cart_bottom_sheet.dart';
 import 'package:fatburger/widgets/food_card.dart';
-import 'package:fatburger/widgets/static_food_menu/food1.dart';
 
-import 'package:fatburger/widgets/static_food_menu/hot_drinks.dart';
-import 'package:fatburger/widgets/static_food_menu/iceCreams1.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix1;
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -83,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //   super.dispose();
   // }
 
-  bool isSelected;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,15 +146,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: EdgeInsets.all(4),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle, color: Colors.white),
-                  child: Text(
-                    '0',
+                  child: Text("1",
+                    //"${stateManagmentData.cartItemLenght}",
+                   
                     style: TextStyle(
                         fontSize: 12,
                         color: Colors.red,
                         fontWeight: FontWeight.w600),
                   ),
+                   
                 ),
               ),
+              
             ],
           ),
         ],

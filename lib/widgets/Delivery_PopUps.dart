@@ -46,9 +46,9 @@ deliveryOptionPopUpBox(BuildContext context) {
                         textColor: Colors.white38,
                         onPressed: () async {
                           tableNumberPopUPbox(
-                              context, tableNumberController, "Ex:12");
+                              context, tableNumberController, "Ex:12", "kyaf");
                           await stateManagmentData
-                              .setTablenumberValue(tableNumberController.text);
+                              .setDyningValue(tableNumberController.text);
                         },
                         child: Row(
                           children: <Widget>[
@@ -73,7 +73,7 @@ deliveryOptionPopUpBox(BuildContext context) {
                         color: Colors.black,
                         textColor: Colors.white38,
                         onPressed: () {
-                          carNumberPopUPbox(context);
+                          carNumberPopUPbox(context, "car");
                         },
                         child: Row(
                           children: <Widget>[
@@ -98,8 +98,8 @@ deliveryOptionPopUpBox(BuildContext context) {
                         color: Colors.black,
                         textColor: Colors.white38,
                         onPressed: () {
-                          outSidePopUPbox(
-                              context, outSideController, "Landmark/Address");
+                          outSidePopUPbox(context, outSideController,
+                              "Landmark/Address", "outside");
                         },
                         child: Row(
                           children: <Widget>[
@@ -117,15 +117,13 @@ deliveryOptionPopUpBox(BuildContext context) {
                           ],
                         ),
                       )),
-
-                
                 ],
               ),
             ));
       });
 }
 
-carNumberPopUPbox(BuildContext context) {
+carNumberPopUPbox(BuildContext context, String title) {
   return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -164,14 +162,17 @@ carNumberPopUPbox(BuildContext context) {
                     autoFocus: true,
                     //textInputAction: TextInputAction.go,
                     onSubmit: (String pin) async {
-                    paymenOptionPopUpBox(context,pin,"null","null");
+                      paymenOptionPopUpBox(context, pin, "null", "null");
 
-                      await stateManagmentData.setCarNumberValue(pin);
-                      print("enterd pin is$pin");
+                      await stateManagmentData.setDyningValue(pin);
+                      // print("enterd pin is$pin");
+                      stateManagmentData.setoptionValue(title);
+                      print(stateManagmentData.dyning);
+                      print(stateManagmentData.options);
+                   
                     },
                   ),
                 ),
-            
               ],
             )),
           ),
@@ -179,7 +180,7 @@ carNumberPopUPbox(BuildContext context) {
       });
 }
 
-tableNumberPopUPbox(BuildContext context, acontroller, hint) {
+tableNumberPopUPbox(BuildContext context, acontroller, hint, String title) {
   return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -251,9 +252,13 @@ tableNumberPopUPbox(BuildContext context, acontroller, hint) {
                       color: Colors.white,
                       textColor: Colors.black,
                       onPressed: () async {
-                      paymenOptionPopUpBox(context,"null",acontroller.text,"null");
+                        paymenOptionPopUpBox(
+                            context, "null", acontroller.text, "null");
                         await stateManagmentData
-                            .setTablenumberValue(acontroller.text);
+                            .setDyningValue(acontroller.text);
+                        stateManagmentData.setoptionValue(title);
+                        print(stateManagmentData.dyning);
+                        print(stateManagmentData.options);
                       },
                       child: Text(
                         "CONFIRM",
@@ -267,7 +272,7 @@ tableNumberPopUPbox(BuildContext context, acontroller, hint) {
       });
 }
 
-outSidePopUPbox(BuildContext context, controller, hint) {
+outSidePopUPbox(BuildContext context, controller, hint, String title) {
   return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -338,10 +343,14 @@ outSidePopUPbox(BuildContext context, controller, hint) {
                     child: FlatButton(
                       color: Colors.white,
                       textColor: Colors.black,
-                      onPressed: () async{
-                        paymenOptionPopUpBox(context,"null","null",controller.text);
-                              await stateManagmentData
-                            .setoutsideValue(controller.text);
+                      onPressed: () async {
+                        paymenOptionPopUpBox(
+                            context, "null", "null", controller.text);
+                        await stateManagmentData
+                            .setDyningValue(controller.text);
+                        stateManagmentData.setoptionValue(title);
+                        print(stateManagmentData.dyning);
+                        print(stateManagmentData.options);
                       },
                       child: Text(
                         "CONFIRM",
@@ -355,7 +364,12 @@ outSidePopUPbox(BuildContext context, controller, hint) {
       });
 }
 
-paymenOptionPopUpBox(BuildContext context,String carno,String tableNo,String outsideData,) {
+paymenOptionPopUpBox(
+  BuildContext context,
+  String carno,
+  String tableNo,
+  String outsideData,
+) {
   return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -386,24 +400,23 @@ paymenOptionPopUpBox(BuildContext context,String carno,String tableNo,String out
                         color: Colors.black,
                         textColor: Colors.white38,
                         onPressed: () {
-                            navigateToPage(
-                            context,
-                            ConFirmationPage(
-                              outsideData: outsideData,
-                              tableNo: tableNo,
-                              carNo: carno,
-                              paymentOption: "cod",
-                            ));
-                            // print(stateManagmentData.outsidedata,);
-                            // print(stateManagmentData.tableNumber);
-                            // print(stateManagmentData.carNumber);
+                          navigateToPage(
+                              context,
+                              ConFirmationPage(
+                                outsideData: stateManagmentData.dyning,
+                                tableNo: stateManagmentData.dyning,
+                                carNo: stateManagmentData.dyning,
+                                paymentOption: "cod",
+                              ));
+                          // print(stateManagmentData.outsidedata,);
+                          // print(stateManagmentData.tableNumber);
+                          // print(stateManagmentData.carNumber);
                         },
                         child: Row(
                           children: <Widget>[
                             Image.asset(
                               "images/cod.png",
-                              height:
-                                  MediaQuery.of(context).size.height * 0.05,
+                              height: MediaQuery.of(context).size.height * 0.05,
                               color: Colors.white38,
                             ),
                             Text(
@@ -420,13 +433,15 @@ paymenOptionPopUpBox(BuildContext context,String carno,String tableNo,String out
                       child: FlatButton(
                         color: Colors.black,
                         textColor: Colors.white38,
-                        onPressed: () { 
-                          navigateToPage(context, CraditCardForm1(
-                            outsideData: outsideData,
-                              tableNo: tableNo,
-                              carNo: carno,
-                              paymentOption: "online",
-                          ));
+                        onPressed: () {
+                          navigateToPage(
+                              context,
+                              CraditCardForm1(
+                                outsideData: outsideData,
+                                tableNo: tableNo,
+                                carNo: carno,
+                                paymentOption: "online",
+                              ));
                         },
                         child: Row(
                           children: <Widget>[

@@ -1,180 +1,177 @@
-
+import 'package:fatburger/BLOCS/Fav_Post_Bloc.dart';
 import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
+import 'package:fatburger/BLOCS/Post_cat_bloc.dart';
+import 'package:fatburger/BLOCS/State_Managment.dart';
+import 'package:fatburger/MODEL/Post_cart_model.dart';
 import 'package:fatburger/PAGES/Cart_Item_Screen1.dart';
 import 'package:fatburger/constants/values.dart';
 import 'package:fatburger/model/foods_response.dart';
-import 'package:fatburger/widgets/static_food_menu/increment_and_dicriment.dart';
+import 'package:fatburger/widgets/QuantityIncreament.dart';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:toast/toast.dart';
 
 class SoupsItemCard extends StatefulWidget {
   List<Food> foods;
   int cId;
   String name;
-  String productId = "12";
-  String phoneNumber = "50372282";
-  String quantity = "2";
-  SoupsItemCard({this.foods, this.name,this.cId});
+ 
+  SoupsItemCard({this.foods, this.name, this.cId});
   @override
   _SoupsItemCardState createState() => _SoupsItemCardState();
 }
 
 class _SoupsItemCardState extends State<SoupsItemCard> {
+  bool isFavorite = true;
+  PostCartModel postCartModel;
   @override
-Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return ListView.builder(
         shrinkWrap: true,
         physics: ScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemCount: widget.foods.length,
         itemBuilder: (BuildContext context, int index) {
-           if (widget.foods[index].catogeryid==1) {
-            
-          
-                return Container(
-                  color: Colors.white,
-                  height: MediaQuery.of(context).size.height * 0.10,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                      InkWell(
-                        onTap: () async => {alertBox(context, index)},
-                        child: Container(
-                          width: MediaQuery.of(context).size.height * 0.25,
-                          height: MediaQuery.of(context).size.height * 0.25,
-                          color: Colors.white,
-                          child: Card(
-                            color: Colors.transparent,
-                            child:  Container(
-                                      width: MediaQuery.of(context).size.height * 0.25,
-                                      height: MediaQuery.of(context).size.height * 0.26,
-                                      color: Colors.white,
-                                       
-                                        child: Container(
-                                          //image
-                                          // width: MediaQuery.of(context).size.height * 0.4,
-                                          // height: MediaQuery.of(context).size.height * 0.8,
-                                          decoration: BoxDecoration(
-                                            image: new DecorationImage(
-                                              image: new NetworkImage(
-                                                  "http://142.93.219.45:8080/filemanager/" +
-                                                      widget.foods[index]
-                                                          .images), //
-                                              fit: BoxFit.cover,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.all(Radius.circular(7.0)),
-                                            color: Colors.white,
-                                          ),
+          if (widget.foods[index].catogeryid == 1) {
+            return Container(
+              color: Colors.white,
+              height: MediaQuery.of(context).size.height * 0.10,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                  InkWell(
+                      onTap: () async => {alertBox(context, index)},
+                      child: Container(
+                        width: MediaQuery.of(context).size.height * 0.25,
+                        height: MediaQuery.of(context).size.height * 0.25,
+                        color: Colors.white,
+                        child: Card(
+                          color: Colors.transparent,
+                          child: Container(
+                            width: MediaQuery.of(context).size.height * 0.25,
+                            height: MediaQuery.of(context).size.height * 0.26,
+                            color: Colors.white,
+                            child: Container(
+                              //image
+                              // width: MediaQuery.of(context).size.height * 0.4,
+                              // height: MediaQuery.of(context).size.height * 0.8,
+                              decoration: BoxDecoration(
+                                image: new DecorationImage(
+                                  image: new NetworkImage(
+                                      "http://142.93.219.45/upload/" +
+                                          widget.foods[index].images), //
+                                  fit: BoxFit.cover,
+                                ),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(7.0)),
+                                color: Colors.white,
+                              ),
 
-                                          child: Stack(
-                                            alignment: AlignmentDirectional.bottomCenter,
+                              child: Stack(
+                                alignment: AlignmentDirectional.bottomCenter,
+                                children: <Widget>[
+                                  Container(
+                                    //name
+                                    color: Colors.white,
+                                    width: MediaQuery.of(context).size.width,
+
+                                    height: MediaQuery.of(context).size.height *
+                                        0.06,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(0.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Row(
                                             children: <Widget>[
                                               Container(
-                                                //name
-                                                color: Colors.white,
-                                                width: MediaQuery.of(context).size.width,
-
-                                                height:
-                                                    MediaQuery.of(context).size.height *
-                                                        0.06,
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(0.0),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
-                                                    children: <Widget>[
-                                                      Row(
-                                                        children: <Widget>[
-                                                          Container(
-                                                           // color: Colors.blue,
-                                                            width: MediaQuery.of(context)
-                                                                    .size
-                                                                    .width *
-                                                                0.3,
-                                                            child: Text(
-                                                              " ${widget.foods[index].name}",
-                                                              overflow: TextOverflow.ellipsis,
-                                                              style: TextStyle(
-                                                                  color: Colors.black,
-                                                                  fontWeight:
-                                                                      FontWeight.w300,
-                                                                  fontSize: 18),
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                            width: MediaQuery.of(context)
-                                                                    .size
-                                                                    .width *
-                                                                0.0,
-                                                          ),
-                                                          Text(
-                                                            "QAR:${widget.foods[index].price}",
-                                                            style: TextStyle(
-                                                                color: Colors.black,
-                                                                fontWeight:
-                                                                    FontWeight.w500,
-                                                                fontSize: 15),
-                                                            textAlign: TextAlign.center,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      
-                                                      Row(
-                                                        children: <Widget>[
-                                                          // Image.asset("assets/loc.png",height: 20,),
-                                                          RatingBar(
-                                                            initialRating: 5.0,
-                                                            direction: Axis.horizontal,
-                                                            itemCount: 5,
-                                                            itemSize: 14,
-                                                            unratedColor: Colors.white,
-                                                            itemPadding: EdgeInsets.only(
-                                                                right: 4.0),
-                                                            ignoreGestures: true,
-                                                            itemBuilder:
-                                                                (context, index) => Icon(
-                                                                    Icons.star,
-                                                                    color: Colors.yellow),
-                                                            onRatingUpdate: (rating) {},
-                                                          ),
-                                                          Card(
-                                                            margin:
-                                                                EdgeInsets.only(left: 65),
-                                                            color: Colors.green,
-                                                            child: InkWell(
-                                                                //onTap: addItemToCard,
-                                                                splashColor:
-                                                                    Colors.white70,
-                                                                child: Icon(
-                                                                  Icons.add,
-                                                                  size: 16,
-                                                                  color: Colors.white,
-                                                                )),
-                                                          )
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
+                                                // color: Colors.blue,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.3,
+                                                child: Text(
+                                                  " ${widget.foods[index].name}",
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                      fontSize: 18),
                                                 ),
+                                              ),
+                                              SizedBox(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.0,
+                                              ),
+                                              Text(
+                                                "QAR:${widget.foods[index].price}",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 15),
+                                                textAlign: TextAlign.center,
                                               ),
                                             ],
                                           ),
-                                        ),
+                                          Row(
+                                            children: <Widget>[
+                                              // Image.asset("assets/loc.png",height: 20,),
+                                              RatingBar(
+                                                initialRating: 5.0,
+                                                direction: Axis.horizontal,
+                                                itemCount: 5,
+                                                itemSize: 14,
+                                                unratedColor: Colors.white,
+                                                itemPadding:
+                                                    EdgeInsets.only(right: 4.0),
+                                                ignoreGestures: true,
+                                                itemBuilder: (context, index) =>
+                                                    Icon(Icons.star,
+                                                        color: Colors.yellow),
+                                                onRatingUpdate: (rating) {},
+                                              ),
+                                              Card(
+                                                margin:
+                                                    EdgeInsets.only(left: 65),
+                                                color: Colors.green,
+                                                child: InkWell(
+                                                    //onTap: addItemToCard,
+                                                    splashColor: Colors.white70,
+                                                    child: Icon(
+                                                      Icons.add,
+                                                      size: 16,
+                                                      color: Colors.white,
+                                                    )),
+                                              )
+                                            ],
+                                          ),
+                                        ],
                                       ),
-                                    )
-                      ,))
-                    ],
-                  ),
-                );}
-                else {
-return Container(
-width: 0.01,
-);
-         } 
-});
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ))
+                ],
+              ),
+            );
+          } else {
+            return Container(
+              width: 0.01,
+            );
+          }
+        });
   }
   //   addItemToCard() {
   //   bool isAddSuccess = Provider.of<MyCart>(context).addItem(CartItem(
@@ -208,9 +205,9 @@ width: 0.01,
     );
   }
 
-  addingtoCart() async {
-    await getCartBloc.additemsToCart(
-        widget.productId, widget.quantity);
+  addingtoCart(String pId,String quantity) async {
+
+    await getCartBloc.addToCart(pId,quantity );
   }
 
   alertBox(BuildContext context, int index) {
@@ -230,7 +227,8 @@ width: 0.01,
                         borderRadius: BorderRadius.all(Radius.circular(0.0)),
                         image: new DecorationImage(
                           image: new NetworkImage(
-                              "http://142.93.219.45:8080/filemanager/"+widget.foods[index].images), //Image
+                              "http://142.93.219.45/upload/" +
+                                  widget.foods[index].images), //Image
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -261,24 +259,44 @@ width: 0.01,
                         ),
                       ],
                     ),
-                      Row(
-                        children: <Widget>[
-                          RatingBar(
-                                              initialRating: 5.0,
-                                              direction: Axis.horizontal,
-                                              itemCount: 5,
-                                              itemSize: 14,
-                                              unratedColor: Colors.white,
-                                              itemPadding:
-                                                  EdgeInsets.only(right: 2.0),
-                                              ignoreGestures: true,
-                                              itemBuilder: (context, index) => Icon(
-                                                  Icons.star,
-                                                  color: Colors.yellow),
-                                              onRatingUpdate: (rating) {},
-                                            ),
-                        ],
-                      ),
+                    Row(
+                      children: <Widget>[
+                        RatingBar(
+                          initialRating: 5.0,
+                          direction: Axis.horizontal,
+                          itemCount: 5,
+                          itemSize: 14,
+                          unratedColor: Colors.white,
+                          itemPadding: EdgeInsets.only(right: 2.0),
+                          ignoreGestures: true,
+                          itemBuilder: (context, index) =>
+                              Icon(Icons.star, color: Colors.yellow),
+                          onRatingUpdate: (rating) {},
+                        ),
+                        ButtonTheme(
+                          buttonColor: Colors.white,
+                          minWidth: 10.0,
+                          height: 20.0,
+                          child: InkWell(
+                              onTap: () {
+                                isFavorite = !isFavorite;
+                                setState(() {
+                                  if (isFavorite==false){
+                                    addTofav(widget.foods[index].id, 50372282);
+                                    Toast.show("added to favorite", context, duration: Toast.LENGTH_SHORT, gravity:  Toast.CENTER);
+                                  }
+
+                                });
+                              },
+                              child: isFavorite
+                                  ? Icon(
+                                      Icons.favorite_border,
+                                      color: Colors.red,
+                                    )
+                                  : Icon(Icons.favorite,color: Colors.red,)),
+                        ),
+                      ],
+                    ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.10,
                       height: MediaQuery.of(context).size.height * 0.01,
@@ -296,15 +314,13 @@ width: 0.01,
                                 width: MediaQuery.of(context).size.width * 0.05,
                               ),
                               RichText(
-                                
                                 text: TextSpan(
                                   style: DefaultTextStyle.of(context).style,
                                   children: <TextSpan>[
                                     TextSpan(
-                                      
                                         text: 'QAR',
                                         style: TextStyle(
-                                          decoration: TextDecoration.none,
+                                            decoration: TextDecoration.none,
                                             fontWeight: FontWeight.normal,
                                             color: Colors.black,
                                             fontSize: 18)),
@@ -331,21 +347,25 @@ width: 0.01,
                             color: Colors.transparent,
                             width: MediaQuery.of(context).size.width * 0.30,
                             height: MediaQuery.of(context).size.height * 0.04,
-                            child: PluseAndMinus()),
+                           child: QuaintityIncreament()
+                           ),
                       ],
                     ),
-                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.0132,
-                        ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.08,
+                      height: MediaQuery.of(context).size.height * 0.0130,
+                    ),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.0685,
                         width: double.infinity, // match_parent
                         child: FlatButton(
                           color: Colors.black,
                           textColor: Colors.white,
                           onPressed: () {
                             setState(() {
-                              //addingtoCart();
+                              addingtoCart("${widget.foods[index].id}","${stateManagmentData.quantity}");
+                              print(widget.foods[index].id);
+                              print(stateManagmentData.quantity);
+                               Toast.show("added to cart", context, duration: Toast.LENGTH_SHORT, gravity:  Toast.CENTER);
                             });
                           },
                           child: Text(
@@ -357,5 +377,9 @@ width: 0.01,
                 ),
               ));
         });
+  }
+
+  addTofav(var productId, var phone) async {
+    await favPostBloc.addproductToFav(productId, phone);
   }
 }
