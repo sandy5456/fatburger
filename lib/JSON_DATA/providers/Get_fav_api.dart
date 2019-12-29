@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:fatburger/MODEL/get_fav_Model.dart';
-import 'package:fatburger/model/foods_response.dart';
+
 import 'package:http/http.dart';
+import 'package:kyankafe/MODEL/get_fav_Model.dart';
 
 
 class GetFavApi {

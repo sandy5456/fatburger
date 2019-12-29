@@ -1,12 +1,13 @@
-import 'package:fatburger/BLOCS/propertybloc.dart';
-import 'package:fatburger/FOODMENU/breakfast/breakfast.dart';
-import 'package:fatburger/FOODMENU/burger/burger.dart';
-import 'package:fatburger/FOODMENU/ice_cream/icecream.dart';
-import 'package:fatburger/FOODMENU/soups.dart';
-import 'package:fatburger/model/foods_response.dart';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:kyankafe/BLOCS/propertybloc.dart';
+import 'package:kyankafe/FOODMENU/breakfast/breakfast.dart';
+import 'package:kyankafe/FOODMENU/burger/burger.dart';
+import 'package:kyankafe/FOODMENU/ice_cream/icecream.dart';
+import 'package:kyankafe/FOODMENU/soups.dart';
+import 'package:kyankafe/MODEL/foods_response.dart';
 
 class Tabbar extends StatefulWidget {
   String catagoryname;
@@ -62,8 +63,8 @@ class _TabbarState extends State<Tabbar> with TickerProviderStateMixin {
               unselectedLabelColor: Colors.grey,
               tabs: <Widget>[
                 Tab(
-                  icon: Image.network(
-                      "https://i.pinimg.com/originals/00/cc/b6/00ccb6f59d1215f5666ad229af120e9f.png",
+                  icon: Image.asset(
+                      "images/cofeetb.png",
                       height: 30,
                       color: _tabController.index == 0
                           ? Color(widget.colorVal)
@@ -73,8 +74,8 @@ class _TabbarState extends State<Tabbar> with TickerProviderStateMixin {
                   //           : Colors.grey)),
                 ),
                 Tab(
-                  icon: Image.network(
-                      "https://cdn0.iconfinder.com/data/icons/minimal-sweets/256/minimal_sweets_8-512.png",
+                  icon: Image.asset(
+                      "images/ice1.png",
                       height: 30,
                       color: _tabController.index == 1
                           ? Color(widget.colorVal)

@@ -1,12 +1,10 @@
-import 'package:fatburger/PAGES/Bottom_Cart_sheet.dart';
-import 'package:fatburger/constants/values.dart';
-import 'package:fatburger/model/foods_response.dart';
-import 'package:fatburger/notifier/cart_model.dart';
 
-import 'package:fatburger/widgets/cart_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:kyankafe/MODEL/foods_response.dart';
+import 'package:kyankafe/PAGES/Bottom_Cart_sheet.dart';
+import 'package:kyankafe/constants/values.dart';
 import 'package:provider/provider.dart';
 
 class FoodCard extends StatefulWidget {

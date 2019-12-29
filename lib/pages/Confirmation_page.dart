@@ -1,17 +1,13 @@
-import 'package:fatburger/BLOCS/Cart_Bloc.dart';
-import 'package:fatburger/BLOCS/CheckOut_bloc.dart';
-import 'package:fatburger/BLOCS/Confirm_cart_Bloc.dart';
-import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
-import 'package:fatburger/BLOCS/State_Managment.dart';
-
-import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
-import 'package:fatburger/MODEL/checkOut_model.dart';
-import 'package:fatburger/constants/values.dart';
-import 'package:fatburger/widgets/Cart_Item_Screen.dart';
-import 'package:fatburger/widgets/Confirmation_cart.dart';
-import 'package:fatburger/widgets/Delivery_PopUps.dart';
-import 'package:fatburger/widgets/bottom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:kyankafe/BLOCS/CheckOut_bloc.dart';
+import 'package:kyankafe/BLOCS/Confirm_cart_Bloc.dart';
+import 'package:kyankafe/BLOCS/Get_Cart_Bloc.dart';
+import 'package:kyankafe/BLOCS/State_Managment.dart';
+import 'package:kyankafe/MODEL/Get_Cart_Model2.dart';
+import 'package:kyankafe/MODEL/checkOut_model.dart';
+import 'package:kyankafe/constants/values.dart';
+import 'package:kyankafe/widgets/Confirmation_cart.dart';
+import 'package:kyankafe/widgets/bottom_navigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ConFirmationPage extends StatefulWidget {
@@ -53,6 +49,7 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(
@@ -69,24 +66,16 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
           ),
         ),
         body: Container(
+          height: MediaQuery.of(context).size.height * 0.75,
           color: Colors.white,
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Container(
-              //   alignment: Alignment.center,
-              //   width: double.infinity,
-              //   child: Container(
-              //     width: 90,
-              //     height: 9,
-              //     decoration: ShapeDecoration(
-              //         shape: StadiumBorder(), color: Colors.black26),
-              //   ),
-              // ),
-
               buildItemsList(context),
+              totalAmount(),
+              Divider(),
 
               //  deliveryConfirmation(context),
               deliveryDetails(context),
@@ -99,6 +88,7 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
   }
 
   Widget buildItemsList(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Expanded(
         child: Container(
       color: Colors.white,
@@ -108,25 +98,139 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
           builder: (context, AsyncSnapshot<GetCartModel2> snapshot) {
             // if (!["", null].contains(phoneNumber)) {
             if (snapshot.hasData) {
-              return Column(
-                children: <Widget>[
-                  ListView.builder(
-                      shrinkWrap: true,
-                      physics: ScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      itemCount: snapshot.data.products.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ConfirmationCartItems(
-                          tableNo: widget.tableNo,
-                          carNo: widget.carNo,
-                          outsideData: widget.outsideData,
-                          removeItem: _removeProductFromCart,
-                          products: snapshot.data.products,
-                          phoneNumber: phoneNumber,
-                        );
-                      }),
-                ],
-              );
+              return ListView.builder(
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  itemCount: snapshot.data.products.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Column(
+                      children: <Widget>[
+                        Container(
+                            width: MediaQuery.of(context).size.width,
+                            decoration: new BoxDecoration(),
+                            child: Card(
+                              elevation: 5,
+                              margin:
+                                  EdgeInsets.only(left: 10, right: 10, top: 5),
+                              child: Column(
+                                children: <Widget>[
+                                  Container(
+                                    height: size.height * 0.14,
+                                    width: size.width * 1,
+                                    padding: EdgeInsetsDirectional.only(
+                                        start: size.width * 0.01,
+                                        end: size.width * 0.01),
+                                    child: Stack(
+                                      children: <Widget>[
+                                        Row(
+                                          children: <Widget>[
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    fit: BoxFit.fitHeight,
+                                                    image: NetworkImage(
+                                                        "http://142.93.219.45/upload/" +
+                                                            snapshot
+                                                                .data
+                                                                .products[index]
+                                                                .productInfo
+                                                                .image)),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(8.0)),
+                                              ),
+                                              padding:
+                                                  EdgeInsetsDirectional.only(
+                                                      start: size.width * 0.05),
+                                              height: size.height * 0.17,
+                                              width: size.width * 0.30,
+                                            ),
+                                            Container(
+                                              width: size.width * 0.4,
+                                              padding: EdgeInsets.only(
+                                                  top: size.height * 0.02,
+                                                  left: size.width * 0.03),
+                                              child: Column(
+                                                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Container(
+                                                    child: Flexible(
+                                                      child: Text(
+                                                        "${snapshot.data.products[index].productInfo.name}",
+                                                        overflow: TextOverflow
+                                                            .visible,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize:
+                                                                size.width *
+                                                                    0.035),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: size.height * 0.01,
+                                                  ),
+                                                  Container(
+                                                    child: Text(
+                                                      "best selling",
+                                                      style: TextStyle(
+                                                          fontSize: size.width *
+                                                              0.032,
+                                                          color:
+                                                              Colors.black26),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: size.height * 0.01,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: size.width * 0.02,
+                                            ),
+                                          ],
+                                        ),
+                                        Positioned(
+                                          bottom: size.height * 0.025,
+                                          left: size.width * 0.33,
+                                          child: Container(
+                                              child: RichText(
+                                            text: TextSpan(
+                                              style:
+                                                  DefaultTextStyle.of(context)
+                                                      .style,
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                    text: 'QAR',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        fontSize: 18)),
+                                                TextSpan(
+                                                    text:
+                                                        "${snapshot.data.products[index].productInfo.price}",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        color: Colors.green,
+                                                        fontSize: 18)),
+                                              ],
+                                            ),
+                                          )),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )),
+                      ],
+                    );
+                  });
             } else {
               return Container(
                 child: Center(
@@ -137,6 +241,52 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
             }
           }),
     ));
+  }
+
+  Widget totalAmount() {
+    return Container(
+      color: Colors.white,
+      height: MediaQuery.of(context).size.height * 0.03,
+      child: StreamBuilder<GetCartModel2>(
+          stream: confirmationCartBloc.getAllCartItems,
+          builder: (context, AsyncSnapshot<GetCartModel2> snapshot) {
+            // if (!["", null].contains(phoneNumber)) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  itemCount:1,
+                  itemBuilder: (BuildContext context, int index) {
+                    return    Row(
+              children: <Widget>[
+                Text(" Amount Payble",style: headerStyle,),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.25),
+                RichText(
+                          text: TextSpan(
+                            style: DefaultTextStyle.of(context).style,
+                            children: <TextSpan>[
+                              TextSpan(text: 'QAR ',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 18)),
+                              TextSpan(
+                                    text: "${snapshot.data.totalprice}",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.green,
+                                      fontSize: 18)),
+                            ],
+                          ),
+                        )
+              ],
+            );
+                  });
+            }
+            else{
+              return Container(
+                color: Colors.white,
+              );
+            }
+          }),
+    );
   }
 
   Widget deliveryDetails(BuildContext context) {
@@ -279,9 +429,5 @@ class _ConFirmationPageState extends State<ConFirmationPage> {
 
   checkoutData(String phone, String dyningnumber, String dyningplace) async {
     await cheakOutBloc.addPostData(phone, dyningnumber, dyningplace);
-  }
-
-  _removeProductFromCart(String productId) async {
-    await getCartBloc.removeToCart(productId, phoneNumber);
   }
 }

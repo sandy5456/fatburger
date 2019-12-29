@@ -1,12 +1,11 @@
-import 'package:fatburger/model/OfferImage.dart';
-import 'package:fatburger/model/Offer_product_model.dart';
-import 'package:fatburger/model/order_response.dart';
-import 'package:fatburger/widgets/QuantityIncreament.dart';
+
 
 
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:kyankafe/MODEL/Offer_product_model.dart';
+import 'package:kyankafe/widgets/QuantityIncreament.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class OfferProductListCard extends StatefulWidget {

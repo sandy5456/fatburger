@@ -1,8 +1,7 @@
 import 'dart:async';
 
-import 'package:fatburger/JSON_DATA/repository/repositories.dart';
-import 'package:fatburger/MODEL/Payment_model.dart';
-import 'package:fatburger/MODEL/checkOut_model.dart';
+import 'package:kyankafe/JSON_DATA/repository/repositories.dart';
+import 'package:kyankafe/MODEL/Payment_model.dart';
 
 
 

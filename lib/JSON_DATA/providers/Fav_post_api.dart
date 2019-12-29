@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
-import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
-import 'package:fatburger/MODEL/checkOut_model.dart';
+
 import 'package:http/http.dart' show Client;
 
 class FavPostProvider {

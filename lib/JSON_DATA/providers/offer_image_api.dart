@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-import 'package:fatburger/model/OfferImage.dart';
-import 'package:fatburger/model/foods_response.dart';
 import 'package:http/http.dart';
+import 'package:kyankafe/MODEL/OfferImage.dart';
 
 
 class OfferImageProvider {

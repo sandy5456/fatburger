@@ -1,8 +1,5 @@
-
-import 'package:fatburger/JSON_DATA/repository/repositories.dart';
-import 'package:fatburger/model/OfferImage.dart';
-import 'package:fatburger/model/Offer_product_model.dart';
-import 'package:fatburger/model/foods_response.dart';
+import 'package:kyankafe/JSON_DATA/repository/repositories.dart';
+import 'package:kyankafe/MODEL/Offer_product_model.dart';
 
 import 'package:rxdart/rxdart.dart';
 

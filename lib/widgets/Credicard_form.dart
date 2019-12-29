@@ -1,7 +1,8 @@
-import 'package:fatburger/BLOCS/Payment_Bloc.dart';
-import 'package:fatburger/MODEL/Payment_model.dart';
-import 'package:fatburger/PAGES/Confirmation_page.dart';
+
 import 'package:flutter/material.dart';
+import 'package:kyankafe/BLOCS/Payment_Bloc.dart';
+import 'package:kyankafe/MODEL/Payment_model.dart';
+import 'package:kyankafe/PAGES/Confirmation_page.dart';
 
 class CraditCardForm1 extends StatefulWidget {
   String tableNo;

@@ -1,6 +1,7 @@
 
-import 'package:fatburger/JSON_DATA/repository/repositories.dart';
-import 'package:fatburger/MODEL/get_fav_Model.dart';
+
+import 'package:kyankafe/JSON_DATA/repository/repositories.dart';
+import 'package:kyankafe/MODEL/get_fav_Model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class GetFavBloc {

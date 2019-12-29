@@ -1,8 +1,6 @@
-import 'package:fatburger/JSON_DATA/repository/repositories.dart';
 
-import 'package:fatburger/model/OfferImage.dart';
-import 'package:fatburger/model/foods_response.dart';
-
+import 'package:kyankafe/JSON_DATA/repository/repositories.dart';
+import 'package:kyankafe/MODEL/OfferImage.dart';
 import 'package:rxdart/rxdart.dart';
 
 class OfferImageBloc {

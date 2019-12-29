@@ -1,15 +1,11 @@
 
-import 'package:fatburger/FOODMENU/soup_items_card.dart';
-
-import 'package:fatburger/blocs/propertybloc.dart';
-
-
-import 'package:fatburger/model/foods_response.dart';
-
 
 import 'package:flutter/material.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:kyankafe/BLOCS/propertybloc.dart';
+import 'package:kyankafe/FOODMENU/soup_items_card.dart';
+import 'package:kyankafe/MODEL/foods_response.dart';
 
 
 import 'cold_drinks_menu.dart';

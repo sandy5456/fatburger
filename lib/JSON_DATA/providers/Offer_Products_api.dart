@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-import 'package:fatburger/model/Offer_product_model.dart';
-import 'package:fatburger/model/foods_response.dart';
 import 'package:http/http.dart';
+import 'package:kyankafe/MODEL/Offer_product_model.dart';
 
 
 class OfferProductProvider {

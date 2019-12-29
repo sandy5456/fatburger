@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 
-import 'package:fatburger/PAGES/register.dart';
-import 'package:fatburger/widgets/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:kyankafe/PAGES/register.dart';
+import 'package:kyankafe/widgets/bottom_navigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {

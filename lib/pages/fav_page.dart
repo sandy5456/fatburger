@@ -1,12 +1,13 @@
-import 'package:fatburger/BLOCS/Fav_Post_Bloc.dart';
-import 'package:fatburger/BLOCS/Get_fav_Bloc.dart';
-import 'package:fatburger/MODEL/get_fav_Model.dart';
-import 'package:fatburger/widgets/QuantityIncreament.dart';
+
 
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:kyankafe/BLOCS/Fav_Post_Bloc.dart';
+import 'package:kyankafe/BLOCS/Get_fav_Bloc.dart';
+import 'package:kyankafe/MODEL/get_fav_Model.dart';
+import 'package:kyankafe/widgets/QuantityIncreament.dart';
 
 class FavScreen extends StatefulWidget {
   @override

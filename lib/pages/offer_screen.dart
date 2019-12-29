@@ -1,14 +1,12 @@
-import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
-import 'package:fatburger/BLOCS/Get_fav_Bloc.dart';
-import 'package:fatburger/BLOCS/State_Managment.dart';
-import 'package:fatburger/MODEL/get_fav_Model.dart';
-import 'package:fatburger/blocs/Offer_product_bloc.dart';
-import 'package:fatburger/blocs/offer_images_bolc.dart';
-import 'package:fatburger/model/Offer_product_model.dart';
-import 'package:fatburger/pages/HomeScreen.dart';
-import 'package:fatburger/widgets/Offer_List_card.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:kyankafe/BLOCS/Get_Cart_Bloc.dart';
+import 'package:kyankafe/BLOCS/Get_fav_Bloc.dart';
+import 'package:kyankafe/BLOCS/Offer_product_bloc.dart';
+import 'package:kyankafe/BLOCS/offer_images_bolc.dart';
+import 'package:kyankafe/MODEL/get_fav_Model.dart';
+import 'package:kyankafe/PAGES/HomeScreen.dart';
 import 'package:toast/toast.dart';
 
 class OffferScreen extends StatefulWidget {

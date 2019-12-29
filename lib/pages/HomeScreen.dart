@@ -1,36 +1,23 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
-import 'package:fatburger/BLOCS/State_Managment.dart';
-import 'package:fatburger/PAGES/Bottom_Cart_sheet.dart';
-import 'package:fatburger/PAGES/tabBar.dart';
-
-import 'package:fatburger/widgets/Cart_Item_Screen.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:dio/dio.dart';
-import 'package:fatburger/blocs/offer_images_bolc.dart';
-import 'package:fatburger/blocs/propertybloc.dart';
-import 'package:fatburger/constants/values.dart';
-
-import 'package:fatburger/model/OfferImage.dart';
-import 'package:fatburger/model/foods_response.dart';
-import 'package:fatburger/model/foods_response.dart' as prefix0;
-import 'package:fatburger/notifier/cart_model.dart';
-import 'package:fatburger/pages/SliderImage.dart';
-
-
-import 'package:fatburger/pages/user_profile.dart';
-
-import 'package:fatburger/widgets/cart_bottom_sheet.dart';
-import 'package:fatburger/widgets/food_card.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix1;
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kyankafe/BLOCS/Get_Cart_Bloc.dart';
+import 'package:kyankafe/BLOCS/State_Managment.dart';
+import 'package:kyankafe/BLOCS/offer_images_bolc.dart';
+import 'package:kyankafe/BLOCS/propertybloc.dart';
+import 'package:kyankafe/MODEL/OfferImage.dart';
+import 'package:kyankafe/PAGES/SliderImage.dart';
+import 'package:kyankafe/PAGES/tabBar.dart';
+import 'package:kyankafe/constants/values.dart';
+import 'package:kyankafe/notifier/cart_model.dart';
+
 import 'package:provider/provider.dart';
 
+import 'Bottom_Cart_sheet.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -73,14 +60,13 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     propertyBloc.fetchAllCategory();
     offerImageBloc.fetchAllOfferImage();
-     getCartBloc.fetchAllGetCartItem();
+    getCartBloc.fetchAllGetCartItem();
   }
   // @override
   // void dispose() {
   //   streamController.close();
   //   super.dispose();
   // }
-
 
   @override
   Widget build(BuildContext context) {
@@ -146,18 +132,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: EdgeInsets.all(4),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle, color: Colors.white),
-                  child: Text("1",
-                    //"${stateManagmentData.cartItemLenght}",
-                   
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.red,
-                        fontWeight: FontWeight.w600),
-                  ),
-                   
+                  child:  stateManagmentData.cartItemLenght == null
+                      ? Text("")
+                      : stateManagmentData.cartItemLenght == 0
+                          ? Text("")
+                          : Text(
+                              "${stateManagmentData.cartItemLenght}",
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w600),
+                            ),
                 ),
               ),
-              
             ],
           ),
         ],
@@ -165,63 +152,60 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  // return Container(
+  //   height: 50,
+  //   //color: Colors.red,
+  //   child: ListView(
+  //     scrollDirection: Axis.horizontal,
+  //     physics: BouncingScrollPhysics(),
+  //     children: List.generate(FoodTypes.values.length, (index) {
+  //       return Padding(
+  //         padding: const EdgeInsets.all(8.0),
+  //         child: ChoiceChip(
+  //           selectedColor: mainColor,
+  //           labelStyle: TextStyle(color: value == index ? Colors.white : Colors.black),
+  //           label: Text(FoodTypes.values[index].toString().split('.').last),
+  //           selected: value == index,
+  //           onSelected: (selected) {
+  //             setState(() {
+  //               value = index;
+  //             });
+  //           },
+  //         ),
+  //       );
+  //     }),
+  //   ),
+}
 
-    
-    // return Container(
-    //   height: 50,
-    //   //color: Colors.red,
-    //   child: ListView(
-    //     scrollDirection: Axis.horizontal,
-    //     physics: BouncingScrollPhysics(),
-    //     children: List.generate(FoodTypes.values.length, (index) {
-    //       return Padding(
-    //         padding: const EdgeInsets.all(8.0),
-    //         child: ChoiceChip(
-    //           selectedColor: mainColor,
-    //           labelStyle: TextStyle(color: value == index ? Colors.white : Colors.black),
-    //           label: Text(FoodTypes.values[index].toString().split('.').last),
-    //           selected: value == index,
-    //           onSelected: (selected) {
-    //             setState(() {
-    //               value = index;
-    //             });
-    //           },
-    //         ),
-    //       );
-    //     }),
-    //   ),
-  }
-
-  // Widget buildFoodList() {
-  //   return Container(
-  //      height: MediaQuery.of(context).size.height * 0.65,
-  //     child: StreamBuilder<FoodResponse>(
-  //       stream: streamController.stream,
-  //       builder: (BuildContext context, snapshot) {
-  //         if (snapshot.hasData) {
-  //           return GridView.count(
-  //             childAspectRatio: 0.65,
-  //             mainAxisSpacing: 4,
-  //             crossAxisSpacing: 4,
-  //             crossAxisCount: 2,
-  //             physics: BouncingScrollPhysics(),
-  //             children: snapshot.data.foods.map((food) {
-  //               return
-  //               Tabbar(
-  //                 catagoryname: snapshot.data.catogeryname,
-  //                 foods: snapshot.data.foods,
-  //               );
-  //             }).toList(),
-  //           );
-  //         } else if (snapshot.hasError) {
-  //           return Center(child: Text(snapshot.error.toString()));
-  //         }
-  //         return Center(child: CircularProgressIndicator());
-  //       },
-  //     ),
-  //   );
-  // }
-
+// Widget buildFoodList() {
+//   return Container(
+//      height: MediaQuery.of(context).size.height * 0.65,
+//     child: StreamBuilder<FoodResponse>(
+//       stream: streamController.stream,
+//       builder: (BuildContext context, snapshot) {
+//         if (snapshot.hasData) {
+//           return GridView.count(
+//             childAspectRatio: 0.65,
+//             mainAxisSpacing: 4,
+//             crossAxisSpacing: 4,
+//             crossAxisCount: 2,
+//             physics: BouncingScrollPhysics(),
+//             children: snapshot.data.foods.map((food) {
+//               return
+//               Tabbar(
+//                 catagoryname: snapshot.data.catogeryname,
+//                 foods: snapshot.data.foods,
+//               );
+//             }).toList(),
+//           );
+//         } else if (snapshot.hasError) {
+//           return Center(child: Text(snapshot.error.toString()));
+//         }
+//         return Center(child: CircularProgressIndicator());
+//       },
+//     ),
+//   );
+// }
 
 Widget offerImageCarasol(context) {
   return Container(

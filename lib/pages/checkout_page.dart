@@ -1,12 +1,13 @@
 import 'dart:ui';
 
 import 'package:dio/dio.dart';
-import 'package:fatburger/constants/values.dart';
-import 'package:fatburger/notifier/cart_model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:intl/intl.dart';
+import 'package:kyankafe/constants/values.dart';
+import 'package:kyankafe/notifier/cart_model.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
@@ -31,7 +32,7 @@ class _CheckOutPageState extends State<CheckOutPage> with SingleTickerProviderSt
         return {"id": cart.cartItems[index].food.id, "quantity": cart.cartItems[index].quantity};
       }).toList();
 
-      var response = await Dio().post('$BASE_URL/api/order/food', queryParameters: {"token": token}, data: data);
+      var response = await Dio().post('/api/order/food', queryParameters: {"token": 'token'}, data: data);
       print(response.data);
 
       if (response.data['status'] == 1) {

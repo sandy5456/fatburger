@@ -1,12 +1,10 @@
 import 'package:credit_card/credit_card_form.dart';
-import 'package:fatburger/BLOCS/State_Managment.dart';
-import 'package:fatburger/PAGES/Confirmation_page.dart';
 
-import 'package:fatburger/PAGES/Dlivery_Option.dart';
-import 'package:fatburger/widgets/Car_Number.dart';
-import 'package:fatburger/widgets/Credicard_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kyankafe/BLOCS/State_Managment.dart';
+import 'package:kyankafe/PAGES/Confirmation_page.dart';
+import 'package:kyankafe/widgets/Credicard_form.dart';
 import 'package:pin_input_text_field/pin_input_text_field.dart';
 
 navigateToPage(context, page) {
@@ -403,9 +401,9 @@ paymenOptionPopUpBox(
                           navigateToPage(
                               context,
                               ConFirmationPage(
-                                outsideData: stateManagmentData.dyning,
-                                tableNo: stateManagmentData.dyning,
-                                carNo: stateManagmentData.dyning,
+                                outsideData: outsideData,
+                                tableNo: tableNo,
+                                carNo: carno,
                                 paymentOption: "cod",
                               ));
                           // print(stateManagmentData.outsidedata,);

@@ -1,8 +1,9 @@
 import 'dart:convert';
-import 'package:fatburger/PAGES/Login.dart';
+
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:kyankafe/PAGES/Login.dart';
 class Register extends StatefulWidget {
   @override
   _RegisterState createState() => _RegisterState();
@@ -30,12 +31,8 @@ class _RegisterState extends State<Register> {
 
   save() async {
     final response = await http
-        .post("http://localhost:8080/register", body: {
-      "flag": 2.toString(),
-      "firstName": name,
-      // "email": email,
-      "mobile": mobile,
-      "password": password,
+        .post("http://142.93.219.45:8080/KyanCafe/kyancafe/register?password=$password&firstName=$name&phone=$mobile", body: {
+      
       "fcm_token": "test_fcm_token"
     });
 

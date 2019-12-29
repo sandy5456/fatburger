@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'package:fatburger/MODEL/Cart_Model.dart';
-import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
-import 'package:fatburger/MODEL/New_model_Get_cart.dart';
+
 import 'package:http/http.dart' show Client;
 
 import 'dart:convert';
+
+import 'package:kyankafe/MODEL/Get_Cart_Model2.dart';
 
 class CartApiProvider {
   List<GetCartModel2> list;

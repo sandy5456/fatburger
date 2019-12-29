@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:kyankafe/BLOCS/Get_Cart_Bloc.dart';
 import 'package:kyankafe/BLOCS/State_Managment.dart';
 
 // class QuaintityIncreament extends StatelessWidget {
@@ -18,25 +19,30 @@ import 'package:kyankafe/BLOCS/State_Managment.dart';
 //   }
 // }
 
-class QuaintityIncreament extends StatefulWidget {
-
+class CartQuaintityIncreament extends StatefulWidget {
+  int count;
+  var productId;
+CartQuaintityIncreament({
+  this.count,
+  this.productId
+});
  
   @override
-  _QuaintityIncreamentState createState() => _QuaintityIncreamentState();
+  _CartQuaintityIncreamentState createState() => _CartQuaintityIncreamentState();
 }
 
-class _QuaintityIncreamentState extends State<QuaintityIncreament> {
-  int count = 0;
+class _CartQuaintityIncreamentState extends State<CartQuaintityIncreament> {
+  
   void add() async {
     setState(() {
-      count++;
+      widget.count++;
     });
       //await stateManagmentData.setQuantityValue(count);
   }
 
   void minus() async {
     setState(() {
-      if (count != 0) count--;
+      if (widget.count != 0) widget.count--;
     });
     //await stateManagmentData.setQuantityValue(count);
   }
@@ -68,9 +74,8 @@ class _QuaintityIncreamentState extends State<QuaintityIncreament> {
                 color: Colors.white,
                 onPressed: () {
                   setState(() {
-                    if (count != 0) count--;
-                    stateManagmentData.setQuantityValue(count);
-                  
+                    if (widget.count != 0) widget.count--;
+                  updateToCart("${widget.productId}","${widget.count}" );
                   });
                 },
                 child: new Icon(
@@ -79,7 +84,7 @@ class _QuaintityIncreamentState extends State<QuaintityIncreament> {
                     color: Colors.green),
               ),
             ),
-            Text('$count',
+            Text('${widget.count}',
                 style: new TextStyle(fontSize: 20.0, color: Colors.green)),
             Container(
               width: MediaQuery.of(context).size.width * 0.08,
@@ -93,9 +98,9 @@ class _QuaintityIncreamentState extends State<QuaintityIncreament> {
                 color: Colors.white,
                 onPressed: () {
                   setState(() {
-                    count++;
-                    stateManagmentData.setQuantityValue(count);
-
+                   widget. count++;
+                    stateManagmentData.setQuantityValue(widget.count);
+                      updateToCart("${widget.productId}","${widget.count}" );
                  
                   });
                 },
@@ -112,5 +117,9 @@ class _QuaintityIncreamentState extends State<QuaintityIncreament> {
     );
   }
 
+  updateToCart(String pId,String quantity) async {
+
+    await getCartBloc.updateToCart(pId,quantity );
+  }
   
 }

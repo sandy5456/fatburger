@@ -5,12 +5,12 @@ import 'package:kyankafe/MODEL/Post_cart_model.dart';
 
 
 
-class PostCartBloc {
+class RegistrationBloc {
   final _repository = Repository();
 
-  postcartData(PostCartModel postCartModel) {
-    _repository.addPostCartData(postCartModel);
+registraionPost(var name,password,phone,image) {
+    _repository.registraionPost(name,password,phone,image);
   }
 }
 
-final postCartBloc = PostCartBloc();
+final registrationBloc = RegistrationBloc();

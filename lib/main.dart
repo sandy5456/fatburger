@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:fatburger/notifier/cart_model.dart';
 
-
-import 'package:fatburger/widgets/bottom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:kyankafe/notifier/cart_model.dart';
+import 'package:kyankafe/widgets/bottom_navigation.dart';
 
 import 'package:provider/provider.dart';
 

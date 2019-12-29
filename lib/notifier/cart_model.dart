@@ -1,5 +1,6 @@
-import 'package:fatburger/model/foods_response.dart';
+
 import 'package:flutter/material.dart';
+import 'package:kyankafe/MODEL/foods_response.dart';
 
 
 class MyCart extends ChangeNotifier {

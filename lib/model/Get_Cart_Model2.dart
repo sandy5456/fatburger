@@ -13,28 +13,30 @@ class GetCartModel2 {
       this.customerinfo});
 
   factory GetCartModel2.fromJson(Map<String, dynamic> json) {
-    var list = json['cartItem'] as List;
-    print("Cart item" + list.toString());
+    // var list = json['cartItem'] as List;
+    // //print("Cart item" + list.toString());
 
-    List<CartProducts2> cartproducts =
-        list.map((i) => CartProducts2.fromJson(i)).toList();
+    // List<CartProducts2> cartproducts =
+    //     list.map((i) => CartProducts2.fromJson(i)).toList();
 
-    print("size" + cartproducts.length.toString());
+    //print("size" + cartproducts.length.toString());
     return GetCartModel2(
-      products: cartproducts,
-      totalprice: double.parse(json['totalPrice'].toString()),
-      subtotal: double.parse(json['subTotal'].toString()),
+      products:  (json['cartItem'] as List)
+          .map((i) => CartProducts2.fromJson(i))
+          .toList(),
+      totalprice: json['totalPrice'],
+      subtotal: json['subTotal'],
 //      customerinfo: (json['customerInfo'] as List)
 //          .map((i) => CustomerInfo.fromJson(i))
 //          .toList(),
     );
   }
- Map toMap(){
-    var map=new Map<String,dynamic>();
-    map['cartItem']=products;
-    return Map();
+//  Map toMap(){
+//     var map=new Map<String,dynamic>();
+//     map['cartItem']=products;
+//     return Map();
 
-  }
+//   }
 }
 
 class CartProducts2 {
@@ -46,9 +48,9 @@ class CartProducts2 {
   factory CartProducts2.fromJson(Map<String, dynamic> json) {
     print("IN product" + json["productInfo"].toString());
 //    var list = json['productInfo'] as List;
-    var p = ProductInfo.fromJson(json['productInfo']);
+   // var p = ProductInfo.fromJson(json['productInfo']);
 //     print("HERE");
-    print("adfasd" + p.name);
+    //print("adfasd" + p.name);
 //    List<ProductInfo> cartproducts =
 //        list.map((i) => ProductInfo.fromJson(i)).toList();
     return CartProducts2(
@@ -66,9 +68,9 @@ class CartProducts2 {
 class ProductInfo {
   String name;
   String image;
-  int price;
+  double price;
   int offer;
-  String productId;
+  int productId;
   int catogeryId;
   ProductInfo(
       {this.image,
@@ -83,9 +85,9 @@ class ProductInfo {
       productId: json['productCode'],
         name: json['productName'],
         image: json['imageurl'],
-        price: double.parse(json['price'].toString()).toInt(),
-        catogeryId: int.parse(json['categoryId'].toString()),
-        offer: int.parse(json['offer'].toString()));
+        price: json['price'],
+        catogeryId: json['categoryId'],
+        offer: json['offer']);
   }
   Map toMap() {
     var map = new Map<String, dynamic>();

@@ -1,8 +1,5 @@
-import 'package:fatburger/JSON_DATA/repository/repositories.dart';
-
-import 'package:fatburger/MODEL/Get_Cart_Model2.dart';
-
-
+import 'package:kyankafe/JSON_DATA/repository/repositories.dart';
+import 'package:kyankafe/MODEL/Get_Cart_Model2.dart';
 import 'package:rxdart/rxdart.dart';
 
 class GetCartBloc {
@@ -15,13 +12,17 @@ class GetCartBloc {
     GetCartModel2 categoryModel = await _repository.fetchAllGetCartItems();
     _getCartFetcher.sink.add(categoryModel);
   }
-addToCart(var productId,var quantity)  {
+updateToCart(var productId, var quantity) {
+    _repository.updateToCart(productId, quantity);
+  }
+  addToCart(var productId, var quantity) {
     _repository.addToCart(productId, quantity);
   }
-  removeToCart(var productId,var quantity)  {
-    _repository.removeToCart(productId, quantity);
+
+  removeToCart(var productId) {
+    _repository.removeToCart(productId);
   }
-  
+
   dispose() async {
     await _getCartFetcher.drain();
     _getCartFetcher.close();

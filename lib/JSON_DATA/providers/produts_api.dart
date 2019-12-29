@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:fatburger/model/foods_response.dart';
+
 import 'package:http/http.dart';
+import 'package:kyankafe/MODEL/foods_response.dart';
 
 
 class PropertyProvider {

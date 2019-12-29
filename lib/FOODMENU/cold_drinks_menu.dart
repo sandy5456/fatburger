@@ -1,11 +1,11 @@
-import 'package:fatburger/BLOCS/Fav_Post_Bloc.dart';
-import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
-import 'package:fatburger/BLOCS/State_Managment.dart';
-import 'package:fatburger/model/foods_response.dart';
-import 'package:fatburger/widgets/QuantityIncreament.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:kyankafe/BLOCS/Fav_Post_Bloc.dart';
+import 'package:kyankafe/BLOCS/Get_Cart_Bloc.dart';
+import 'package:kyankafe/BLOCS/State_Managment.dart';
+import 'package:kyankafe/MODEL/foods_response.dart';
+
+import 'package:kyankafe/widgets/QuantityIncreament.dart';
 import 'package:toast/toast.dart';
 class ColdDrinksMenu extends StatefulWidget {
     List<Food> foods;
@@ -228,11 +228,12 @@ width: 0.1,
                           child: Row(
                             children: <Widget>[
                               Text(
-                                "   ${widget.foods[index].name}",
+                                " ${widget.foods[index].name}",
                                 textAlign: TextAlign.start,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                     color: Colors.black87,
-                                    fontSize: 30,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.w400),
                               ),
                             ],

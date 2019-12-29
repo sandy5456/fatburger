@@ -1,25 +1,12 @@
-import 'package:fatburger/BLOCS/Cart_Bloc.dart';
-import 'package:fatburger/BLOCS/Get_Cart_Bloc.dart';
-import 'package:fatburger/FOODMENU/ice_cream/ic_ItemCart.dart';
-import 'package:fatburger/FOODMENU/ice_cream/soft_drinks.dart';
-import 'package:fatburger/FOODMENU/soup_items_card.dart';
-import 'package:fatburger/PAGES/Cart_Item_Screen1.dart';
-
-import 'package:fatburger/blocs/offer_images_bolc.dart';
-import 'package:fatburger/blocs/propertybloc.dart';
-import 'package:fatburger/constants/values.dart';
-
-import 'package:fatburger/model/foods_response.dart';
-import 'package:fatburger/notifier/cart_model.dart';
-import 'package:fatburger/widgets/Cart_Item_Screen.dart';
-import 'package:fatburger/widgets/cart_bottom_sheet.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:provider/provider.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:toast/toast.dart';
+import 'package:kyankafe/BLOCS/propertybloc.dart';
+import 'package:kyankafe/FOODMENU/ice_cream/soft_drinks.dart';
+import 'package:kyankafe/MODEL/foods_response.dart';
+
+import 'ic_ItemCart.dart';
+
 
 
 

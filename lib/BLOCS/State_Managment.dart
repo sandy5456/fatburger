@@ -1,11 +1,26 @@
+import 'dart:io';
+
 class StateManagmentData{
   String options;
   String dyning;
   String carNumber;
   int quantity;
+  int cartQuantity;
   String tableNumber;
   String outsidedata;
   var cartItemLenght;
+  var totalAmounttopay;
+
+  File file;
+  setImageValue(File file){
+    file=file;
+  }
+  setCartQuanity(int cartQuantity ){
+    cartQuantity=cartQuantity;
+  }
+  setTotalAmounttopay(var value){
+    totalAmounttopay=value;
+  }
   setCarNumberValue(String value) {
     carNumber= value;
   }
